@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Apostas em Jogos de Futebol</title>
+  </head>
+  <body>
+    <h1>Apostas em Jogos de Futebol</h1>
+    <form method="POST" action="/apostar" id="formulario">
+      <fieldset>
+        <label for="nome">Nome: </label>
+        <input type="text" id="nome" name="nome">
+        <br>
+        <label for="tef">Telefone: </label>
+        <input type="tel" id="tef" name="tef">
+        <br>
+        <label for="endereco">Endereço: </label>
+        <input type="text" id="endereco" name="endereco">
+        <br>
+        <label for="responsavel">Responsavel: </label>
+        <input type="text" id="responsavel" readonly disabled value=<%= revendedor %> name="responsavel">
+        <br>
+      </fieldset>
+      <br>
+      <% jogos.forEach(jogo => { %>
+        <fieldset>
+          <label for=<%= jogo.nome %>>
+            <%= jogo.nome %>
+          </label>
+          <br>
+          <input type="radio" id=<%= jogo.idCasa %> name=<%= jogo.id %> value="1">
+          <label for=<%= jogo.idCasa %>>
+            <%= jogo.nomeCasa %>
+          </label>
+          <input type="radio" id=<%= jogo.idEmpate %> name=<%= jogo.id %> value="0">
+          <label for=<%= jogo.idEmpate %>>
+            Empate
+          </label>
+          <input type="radio" id=<%= jogo.idFora %> name=<%= jogo.id %> value="2">
+          <label for=<%= jogo.idFora %>>
+            <%= jogo.nomeFora %>
+          </label>
+        </fieldset>
+        <br>
+      <% }) %>      
+      <button type="submit">Enviar</button>
+    </form>
+  </body>
+</html>
