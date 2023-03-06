@@ -10,11 +10,15 @@ class Autenticador {
     }
 
     verificaLogin(req) {
-        return this.usuario.pass == req.body.password
+        return (this.usuario != null && this.usuario.pass == req.body.password)
     }
 
     verificaPermissaoADM() {
-        return this.usuario.permissão == Permissao.ADM
+        return (this.usuario != null && this.usuario.permissão === Permissao.ADM)
+    }
+
+    verificaPermissaoDev() {
+        return (this.usuario != null && this.usuario.permissão === Permissao.DEV)
     }
 
 }

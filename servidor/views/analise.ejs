@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <label for="name-filter">Filtrar por nome:</label>
+  <input type="text" id="name-filter">
+  <label for="date-filter">Filtrar por data:</label>
+  <input type="date" id="date-filter">
+  <button id="filter-button">Filtrar</button>
+  
+  <table id="sales-table">
+    <thead>
+      <tr>
+        <th>Identificador</th>
+        <th>Revendedor</th>
+        <th>Apostador</th>
+        <th>Telefone</th>
+        <th>Endereço</th>
+        <th>Data</th>
+        <th>Hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% apostas.forEach(aposta => { %>
+        <tr>
+          <td>
+            <%= aposta.id %>
+          </td>
+          <td>
+            <%= `${aposta.responsavel}` %>
+          </td>
+          <td>
+            <%= aposta.nome %>
+          </td>
+          <td>
+            <%= aposta.telefone %>
+          </td>
+          <td>
+            <%= aposta.endereco %>
+          </td>
+          <td>
+            <%= aposta.data %>
+          </td>
+          <td>
+            <%= aposta.horaMinuto %>
+          </td>
+        </tr>
+      <% }) %>  
+    </tbody>
+  </table>
+  
+  <p id="total-sales"></p>
+
+  <form action="limpar-apostas" method="post">
+    <input type="password" name="password">
+    <button type="submit">Limpar Apostas</button>
+  </form>
+  
+  <script>
+    const nameFilter = document.getElementById('name-filter');
+    const dateFilter = document.getElementById('date-filter');
+    const filterButton = document.getElementById('filter-button');
+    const salesTable = document.getElementById('sales-table');
+    const rows = salesTable.getElementsByTagName('tr');
+    const totalSales = document.getElementById('total-sales');
+    totalSales.textContent = `Total de Apostas ${rows.length - 1}`
+  
+    filterButton.addEventListener('click', function(event) {
+      const nameFilterValue = nameFilter.value.toLowerCase();
+      const dateFilterValue = dateFilter.value.split('-').reverse().join('/');
+      let sum = 0;
+      
+      for (let i = 1; i < rows.length; i++) {
+        const name = rows[i].getElementsByTagName('td')[1].textContent.toLowerCase();
+        const date = rows[i].getElementsByTagName('td')[5].textContent;
+        
+        if ((nameFilterValue !== '' && name.indexOf(nameFilterValue) === -1) ||
+            (dateFilterValue !== '' && date !== dateFilterValue)) {
+          rows[i].style.display = 'none';
+        } else {
+          rows[i].style.display = '';
+          sum ++
+        }
+      }
+      
+      totalSales.textContent = `Total de Apostas ${sum}`;
+    });
+  </script>
+</body>
+</html>

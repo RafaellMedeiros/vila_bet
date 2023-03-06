@@ -25,6 +25,8 @@ app.post('/login', (req, res) => {
     if (aut.verificaLogin(req)) {
         if (aut.verificaPermissaoADM()) {
             res.render('adm')
+        } else if (aut.verificaPermissaoDev()) {
+            res.render('dev')
         } else {            
             res.render('nova-aposta', {
                 jogos: BD.jogos,
@@ -37,13 +39,25 @@ app.post('/login', (req, res) => {
 })
 
 app.post('/apostar', (req, res) => {
-    const apostas = Utils.tranformaResultado(Object.values(req.body).slice(4))
+    const apostas = Utils.tranformaResultado(Object.values(req.body).slice(3))
     const dado = req.body
     BD.criarApostas(new Aposta(apostas, dado.nome, dado.tef, dado.responsavel, dado.endereco))
     res.render('confira-aposta', {
         apostas: apostas,
         jogos: BD.jogos
     })
+})
+
+app.get('/analise', (req, res) => {
+    res.render('analise', {apostas: BD.apostas})
+})
+
+app.get('/cadastro-representantes', (req, res) => {
+    res.render('cadastro-representantes')
+})
+
+app.get('/cadastrar-nova-semana', (req, res) => {
+    res.render('cadastrar-nova-semana')
 })
 
 app.listen('8080', () => console.log('Server is running'))

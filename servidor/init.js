@@ -29,11 +29,13 @@ class Init {
     BD.criarUsuarios(usuarioRafa)
     BD.criarUsuarios(usuarioVi)
     BD.criarUsuarios(usuarioLiz)
-    
-    console.log(BD.usuarios)
 
     BD.criarApostas(aposta1)
     BD.criarApostas(aposta2)
+
+    console.log(BD.apostas)
+    BD.apostas[0].aposta = resultado
+    console.log(BD.apostas)
   }
 
   static criatJogos(numJogos) {
