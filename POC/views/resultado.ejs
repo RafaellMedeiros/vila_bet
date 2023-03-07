@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado Vila Bet</title>
+</head>
+<body>
+    <h1>Bem Vindo ao Vila Bet <%= apostador %></h1>
+    <h3>Sua Aposta</h3>
+    <table>
+      <tr>
+        <th>Casa</th>
+        <th>Fora</th>
+        <th>Resultado</th>
+      </tr>
+      <% for (let i = 0; i < jogos.length; i++) { %>
+        <tr>
+            <td><%= jogos[i].nomeCasa %></td>
+            <td><%= jogos[i].nomeFora %></td>
+            <td>
+                <%= valoresApostados[i] %>
+            </td>
+        </tr>
+      <% } %>
+    </table>
+    <br/><br/>
+    <h3>Ranking</h3>
+    <table>
+        <tr>
+          <th>Nome</th>
+          <th>Pontos</th>
+        </tr>
+        <% ranking.forEach(posicao => { %>
+          <tr>
+              <td><%= posicao.nome %></td>
+              <td><%= posicao.pontuacao %></td>
+          </tr>
+        <% }) %>
+    </table>
+
+
+</body>
+</html>

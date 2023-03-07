@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% if(contadorJogo != null) { %>
+	    <title>Cadastro de Jogos de Futebol</title>
+    <% } %>
+    <% if(jogos != null) { %>
+	    <title>Jogos Cadastrados</title>
+    <% } %>
+</head>
+<body>
+    <% if(contadorJogo != null) { %>
+        <h1>Cadastro de Jogos de Futebol</h1>
+        <form action="cadastrar-nova-semana" method="post">
+                <fieldset>
+                    <h2>Jogo <%= contadorJogo %></h2>
+                    <!-- <label for="data">Data:</label>
+                    <input type="date" id="data" name="data" required><br>
+            
+                    <label for="hora">Hora:</label>
+                    <input type="time" id="hora" name="hora" required><br> -->
+            
+                    <label for="time1">Casa:</label>
+                    <input type="text" id="time1" name="time1" required><br>
+            
+                    <label for="time2">Fora:</label>
+                    <input type="text" id="time2" name="time2" required><br>
+            
+                    <!-- <label for="estadio">Estádio:</label>
+                    <input type="text" id="estadio" name="estadio" required><br> -->
+                </fieldset>
+            <input type="submit" value="Cadastrar">
+        </form>
+    <% } %>
+    <br/><br/>
+    <% if(jogos.length > 0) { %>
+        <h2>Jogos Cadastrados</h2>
+        <table id="sales-table">
+            <thead>
+              <tr>
+                <th>Jogo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% jogos.forEach(jogo => { %>
+                <tr>
+                  <td>
+                    <%= jogo.nome %>
+                  </td>
+                </tr>
+              <% }) %>  
+            </tbody>
+          </table>
+    <% } %>
+    <br/><br/>
+    <a href="adm">Voltar</a>
+</body>
+</html>

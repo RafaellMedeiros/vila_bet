@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Resultados dos Jogos de Futebol</title>
+  </head>
+  <body>
+    <h1>Aposta Confirmada</h1>
+    <table>
+      <tr>
+        <th>Casa</th>
+        <th>Fora</th>
+        <th>Resultado</th>
+      </tr>
+      <% for (let i = 0; i < jogos.length; i++) { %>
+        <tr>
+            <td><%= jogos[i].nomeCasa %></td>
+            <td><%= jogos[i].nomeFora %></td>
+            <td>
+                <%= apostas[i] %>
+            </td>
+        </tr>
+      <% } %>
+    </table>
+    <br><br>
+    <a id="link" href="<%= link %>"><%= link %></a>
+    <button type="button" onclick="transferirTexto()">Copiar</button>
+    <br><br>
+    <a href="/">Nova Aposta</a>
+  </body>
+
+  <script>
+    function transferirTexto() {
+      const text = document.getElementById("link").textContent;
+ 
+      navigator.clipboard.writeText(text)
+      .then(() => {
+          console.log('Text copied to clipboard');
+      })
+      .catch(err => {
+          console.error('Error in copying text: ', err);
+      });
+    }
+  </script>
+</html>

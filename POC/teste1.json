@@ -1,0 +1,325 @@
+{
+  "filters": {
+    "dateFrom": "2023-03-07",
+    "dateTo": "2023-03-08",
+    "permission": "TIER_ONE"
+  },
+  "resultSet": {
+    "count": 5,
+    "competitions": "ELC,CL",
+    "first": "2023-03-07",
+    "last": "2023-03-07",
+    "played": 0
+  },
+  "matches": [
+    {
+      "area": {
+        "id": 2072,
+        "name": "England",
+        "code": "ENG",
+        "flag": "https://crests.football-data.org/770.svg"
+      },
+      "competition": {
+        "id": 2016,
+        "name": "Championship",
+        "code": "ELC",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/ELC.png"
+      },
+      "season": {
+        "id": 1502,
+        "startDate": "2022-07-29",
+        "endDate": "2023-05-06",
+        "currentMatchday": 35,
+        "winner": null
+      },
+      "id": 422337,
+      "utcDate": "2023-03-07T19:45:00Z",
+      "status": "TIMED",
+      "matchday": 29,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "lastUpdated": "2023-03-05T01:32:01Z",
+      "homeTeam": {
+        "id": 394,
+        "name": "Huddersfield Town AFC",
+        "shortName": "Huddersfield",
+        "tla": "HUD",
+        "crest": "https://crests.football-data.org/394.png"
+      },
+      "awayTeam": {
+        "id": 387,
+        "name": "Bristol City FC",
+        "shortName": "Bristol City",
+        "tla": "BRI",
+        "crest": "https://crests.football-data.org/387.svg"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "home": null,
+          "away": null
+        },
+        "halfTime": {
+          "home": null,
+          "away": null
+        }
+      },
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "referees": []
+    },
+    {
+      "area": {
+        "id": 2072,
+        "name": "England",
+        "code": "ENG",
+        "flag": "https://crests.football-data.org/770.svg"
+      },
+      "competition": {
+        "id": 2016,
+        "name": "Championship",
+        "code": "ELC",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/ELC.png"
+      },
+      "season": {
+        "id": 1502,
+        "startDate": "2022-07-29",
+        "endDate": "2023-05-06",
+        "currentMatchday": 35,
+        "winner": null
+      },
+      "id": 422334,
+      "utcDate": "2023-03-07T20:00:00Z",
+      "status": "TIMED",
+      "matchday": 29,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "lastUpdated": "2023-03-04T01:32:02Z",
+      "homeTeam": {
+        "id": 355,
+        "name": "Reading FC",
+        "shortName": "Reading",
+        "tla": "REA",
+        "crest": "https://crests.football-data.org/355.png"
+      },
+      "awayTeam": {
+        "id": 356,
+        "name": "Sheffield United FC",
+        "shortName": "Sheffield Utd",
+        "tla": "SHE",
+        "crest": "https://crests.football-data.org/356.svg"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "home": null,
+          "away": null
+        },
+        "halfTime": {
+          "home": null,
+          "away": null
+        }
+      },
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "referees": []
+    },
+    {
+      "area": {
+        "id": 2077,
+        "name": "Europe",
+        "code": "EUR",
+        "flag": "https://crests.football-data.org/EUR.svg"
+      },
+      "competition": {
+        "id": 2001,
+        "name": "UEFA Champions League",
+        "code": "CL",
+        "type": "CUP",
+        "emblem": "https://crests.football-data.org/CL.png"
+      },
+      "season": {
+        "id": 1491,
+        "startDate": "2022-06-21",
+        "endDate": "2023-06-10",
+        "currentMatchday": 6,
+        "winner": null
+      },
+      "id": 428952,
+      "utcDate": "2023-03-07T20:00:00Z",
+      "status": "TIMED",
+      "matchday": null,
+      "stage": "LAST_16",
+      "group": null,
+      "lastUpdated": "2022-11-10T10:33:07Z",
+      "homeTeam": {
+        "id": 1903,
+        "name": "Sport Lisboa e Benfica",
+        "shortName": "SL Benfica",
+        "tla": "BEN",
+        "crest": "https://crests.football-data.org/1903.png"
+      },
+      "awayTeam": {
+        "id": 851,
+        "name": "Club Brugge KV",
+        "shortName": "Club Brugge",
+        "tla": "CLU",
+        "crest": "https://crests.football-data.org/851.svg"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "home": null,
+          "away": null
+        },
+        "halfTime": {
+          "home": null,
+          "away": null
+        }
+      },
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "referees": [
+        {
+          "id": 172903,
+          "name": "Halil Meler",
+          "type": "REFEREE",
+          "nationality": "Turkey"
+        }
+      ]
+    },
+    {
+      "area": {
+        "id": 2072,
+        "name": "England",
+        "code": "ENG",
+        "flag": "https://crests.football-data.org/770.svg"
+      },
+      "competition": {
+        "id": 2016,
+        "name": "Championship",
+        "code": "ELC",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/ELC.png"
+      },
+      "season": {
+        "id": 1502,
+        "startDate": "2022-07-29",
+        "endDate": "2023-05-06",
+        "currentMatchday": 35,
+        "winner": null
+      },
+      "id": 422328,
+      "utcDate": "2023-03-07T20:00:00Z",
+      "status": "TIMED",
+      "matchday": 29,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "lastUpdated": "2023-03-05T01:32:01Z",
+      "homeTeam": {
+        "id": 74,
+        "name": "West Bromwich Albion FC",
+        "shortName": "West Brom",
+        "tla": "WBA",
+        "crest": "https://crests.football-data.org/74.png"
+      },
+      "awayTeam": {
+        "id": 75,
+        "name": "Wigan Athletic FC",
+        "shortName": "Wigan Athletic",
+        "tla": "WIG",
+        "crest": "https://crests.football-data.org/75.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "home": null,
+          "away": null
+        },
+        "halfTime": {
+          "home": null,
+          "away": null
+        }
+      },
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "referees": []
+    },
+    {
+      "area": {
+        "id": 2077,
+        "name": "Europe",
+        "code": "EUR",
+        "flag": "https://crests.football-data.org/EUR.svg"
+      },
+      "competition": {
+        "id": 2001,
+        "name": "UEFA Champions League",
+        "code": "CL",
+        "type": "CUP",
+        "emblem": "https://crests.football-data.org/CL.png"
+      },
+      "season": {
+        "id": 1491,
+        "startDate": "2022-06-21",
+        "endDate": "2023-06-10",
+        "currentMatchday": 6,
+        "winner": null
+      },
+      "id": 428951,
+      "utcDate": "2023-03-07T20:00:00Z",
+      "status": "TIMED",
+      "matchday": null,
+      "stage": "LAST_16",
+      "group": null,
+      "lastUpdated": "2022-11-10T10:33:07Z",
+      "homeTeam": {
+        "id": 61,
+        "name": "Chelsea FC",
+        "shortName": "Chelsea",
+        "tla": "CHE",
+        "crest": "https://crests.football-data.org/61.png"
+      },
+      "awayTeam": {
+        "id": 4,
+        "name": "Borussia Dortmund",
+        "shortName": "Dortmund",
+        "tla": "BVB",
+        "crest": "https://crests.football-data.org/4.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "home": null,
+          "away": null
+        },
+        "halfTime": {
+          "home": null,
+          "away": null
+        }
+      },
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "referees": [
+        {
+          "id": 43899,
+          "name": "Danny Makkelie",
+          "type": "REFEREE",
+          "nationality": "Netherlands"
+        }
+      ]
+    }
+  ]
+}
