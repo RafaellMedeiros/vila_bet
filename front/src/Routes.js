@@ -8,6 +8,8 @@ import Analysis from './pages/Analysis';
 import CadSeller from './pages/CadSeller';
 import GamesWeek from './pages/GamesWeek';
 import Results from './pages/Results';
+import Bets from './pages/Bets';
+import Ticket from './pages/Ticket';
 
 
 export const Routes = () => {
@@ -17,6 +19,8 @@ export const Routes = () => {
         {path:'/analise', element: <Analysis/>},
         {path:'/cadrep', element: <CadSeller/>},
         {path:'/jogos', element: <GamesWeek/>},
-        {path:'/resultados', element:<Results/>}
+        {path:'/resultados', element:<Results/>},
+        {path:'/apostas', element:<Bets/>},
+        {path:'/apostas/ticket', element:<Ticket/>}
     ])
 }

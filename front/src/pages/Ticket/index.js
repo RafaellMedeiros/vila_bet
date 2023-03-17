@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageContainer, PageTitle, Back } from "../../components/MainComponents";
-import { PageArea } from "./styled";
+import { PageArea, LinkArea } from "./styled";
 
 
 
@@ -16,121 +16,121 @@ const Page = () => {
             teams: {
                 home: 'Treze', away: 'Queimadense'
             },
-            result: ''
+            result: 'home'
         },
         {
             teams: {
                 home: 'Sousa', away: 'CSP'
             },
-            result: ''
+            result: 'home'
         },
         {
             teams: {
                 home: 'Auto Esporte', away: 'Campinense'
             },
-            result: ''
+            result: 'away'
         },
         {
             teams: {
                 home: 'Nacional', away: 'Botafogo'
             },
-            result: ''
+            result: 'away'
         },
         {
             teams: {
                 home: 'São Paulo Cristal', away: 'Serra Branca'
             },
-            result: ''
+            result: 'draw'
         },
         {
             teams: {
                 home: 'Treze', away: 'Queimadense'
             },
-            result: ''
+            result: 'home'
         },
         {
             teams: {
                 home: 'Sousa', away: 'CSP'
             },
-            result: ''
+            result: 'home'
         },
         {
             teams: {
                 home: 'Auto Esporte', away: 'Campinense'
             },
-            result: ''
+            result: 'away'
         },
         {
             teams: {
                 home: 'Nacional', away: 'Botafogo'
             },
-            result: ''
+            result: 'away'
         },
         {
             teams: {
                 home: 'São Paulo Cristal', away: 'Serra Branca'
             },
-            result: ''
+            result: 'draw'
         },
         {
             teams: {
                 home: 'Treze', away: 'Queimadense'
             },
-            result: ''
+            result: 'home'
         },
         {
             teams: {
                 home: 'Sousa', away: 'CSP'
             },
-            result: ''
+            result: 'home'
         },
         {
             teams: {
                 home: 'Auto Esporte', away: 'Campinense'
             },
-            result: ''
+            result: 'away'
         },
         {
             teams: {
                 home: 'Nacional', away: 'Botafogo'
             },
-            result: ''
+            result: 'away'
         },
         {
             teams: {
                 home: 'São Paulo Cristal', away: 'Serra Branca'
             },
-            result: ''
+            result: 'draw'
         },
         {
             teams: {
                 home: 'Treze', away: 'Queimadense'
             },
-            result: ''
+            result: 'home'
         },
         {
             teams: {
                 home: 'Sousa', away: 'CSP'
             },
-            result: ''
+            result: 'home'
         },
         {
             teams: {
                 home: 'Auto Esporte', away: 'Campinense'
             },
-            result: ''
+            result: 'away'
         },
         {
             teams: {
                 home: 'Nacional', away: 'Botafogo'
             },
-            result: ''
+            result: 'away'
         },
         {
             teams: {
                 home: 'São Paulo Cristal', away: 'Serra Branca'
             },
-            result: ''
+            result: 'draw'
         },
 
 
@@ -150,8 +150,8 @@ const Page = () => {
     }
     return (
         <PageContainer>
-            <Back onClick={handleBackButton}>Voltar</Back>
-            <PageTitle>Resultados da semana</PageTitle>
+            <Back onClick={handleBackButton}>Nova Aposta</Back>
+            <PageTitle>Ticket da Aposta</PageTitle>
             <PageArea>
                 <div className="container">
                     {games.map((i, k) =>
@@ -159,50 +159,36 @@ const Page = () => {
                         <div className="games" key={k}>
                             <h3 key={k}>Jogo {k + 1}</h3>
 
-                            <label for={`${k}`}>
+                            
                                 <div className="time" style={{backgroundColor: i.result === 'home' ? '#CA3237': '', color: i.result === 'home' ? '#FFF': '' }}>
-                                    <input
-                                        type="radio"
-                                        value={'home'}
-                                        name={k + 'resultado'}
-                                        id={`${k}`}
-                                        
-                                        onChange={() => handleOnChange(k, 'home')}
-                                    />
+                                    
                                     {i.teams.home}
                                 </div>
-                            </label>
-                            <label for={`${k}1`}>
+                            
+                            
                                 <div className="time" style={{backgroundColor: i.result === 'draw' ? '#CA3237': '', color: i.result === 'draw' ? '#FFF': '' }}>
-                                    <input
-                                        type="radio"
-                                        value={'draw'}
-                                        name={k + 'resultado'}
-                                        id={`${k}1`}
-                                        
-                                        onChange={() => handleOnChange(k, 'draw')}
-                                    />
+                                    
                                     Empate
                                 </div>
-                            </label>
-                            <label for={`${k}2`}>
+                            
+                            
                                 <div className="time" style={{backgroundColor: i.result === 'away' ? '#CA3237': '' , color: i.result === 'away' ? '#FFF': '' }}>
-                                    <input
-                                        type="radio"
-                                        value={'away'}
-                                        name={k + 'resultado'}
-                                        id={`${k}2`}
-                                        selected = {i.result === 'away'}
-                                        onChange={() => handleOnChange(k, 'away')}
-                                    />
+                                    
                                     {i.teams.away}
                                 </div>
-                            </label>
+                            
 
                         </div>
 
                     )}
                 </div>
+                <LinkArea>
+                    <div className="link--container">
+                        <div className="link--title">Link do ticket: </div>
+                        <a href="">https://vilabet.com.br/ticket?qId=12345</a>
+                        <button>Copiar link</button>
+                    </div>
+                </LinkArea>
             </PageArea>
         </PageContainer>
     )

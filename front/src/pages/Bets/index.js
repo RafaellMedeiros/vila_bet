@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageContainer, PageTitle, Back } from "../../components/MainComponents";
-import { PageArea } from "./styled";
+import { PageArea, InfosArea, SendButton } from "./styled";
 
 
 
 const Page = () => {
 
     const navigate = useNavigate();
-    const [isChecked, setIsChecked] = useState(false);
+
+    const [name, setName] = useState('');
+    const [ phone, setPhone] = useState('');
+    const [ address, setAddress] = useState('');
+    const [ selller, setSeller] = useState('Vendedor');
+    const [disabled, setDisabled] = useState(false);
 
     const [games, setGames] = useState([
 
@@ -144,14 +149,73 @@ const Page = () => {
         setGames(gamesCopy);
 
     }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setDisabled(true);
 
-    const handleBackButton = () => {
-        navigate(-1);
+
+
+        setDisabled(false);
     }
+    const handleSendButton = () => {
+        window.location.href='/apostas/ticket'
+    }
+
     return (
         <PageContainer>
-            <Back onClick={handleBackButton}>Voltar</Back>
-            <PageTitle>Resultados da semana</PageTitle>
+            <PageTitle>Apostas da semana</PageTitle>
+            <InfosArea>
+            <form onSubmit={handleSubmit}>
+                    <label className="area">
+                        <div className="area--title">Nome:</div>
+                        <div className="area--input">
+                            <input
+                                type="text"
+                                disabled={disabled}
+                                value={name}
+                                onChange={e => setName(e.target.value)}
+                                required
+                            />
+                        </div>
+                    </label>
+                    <label className="area">
+                        <div className="area--title">Telefone:</div>
+                        <div className="area--input">
+                            <input
+                                type="tel"
+                                disabled={disabled}
+                                value={phone}
+                                onChange={e => setPhone(e.target.value)}
+                                required
+                                pattern="[0-9]{2}-[0-9]{5}-[0-9]{4}"
+                            />
+                        </div>
+                    </label>
+                    <label className="area">
+                        <div className="area--title">Endereço:</div>
+                        <div className="area--input">
+                            <input
+                                type="text"
+                                disabled={disabled}
+                                value={address}
+                                onChange={e => setAddress(e.target.value)}
+                                required
+                            />
+                        </div>
+                    </label>
+                    <label className="area">
+                        <div className="area--title">Responsável:</div>
+                        <div className="area--input">
+                            <input
+                                type="email"
+                                disabled={disabled}
+                                value={selller}
+                                required
+                            />
+                        </div>
+                    </label>
+                </form>
+            </InfosArea>
             <PageArea>
                 <div className="container">
                     {games.map((i, k) =>
@@ -204,6 +268,7 @@ const Page = () => {
                     )}
                 </div>
             </PageArea>
+            <SendButton onClick={handleSendButton}>Enviar apostas</SendButton>
         </PageContainer>
     )
 };

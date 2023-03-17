@@ -39,3 +39,38 @@ export const PageArea = styled.div`
         }
     }
 `;
+
+export const InfosArea = styled.div`
+    max-width: 1000px;
+    margin-bottom: 20px;
+    border: 1px solid #999;
+    padding: 15px 0 ;
+    form{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        
+
+        .area{
+            width: 235px;
+            padding: 0  15px;
+           .area--input{
+            width: 235px;
+            input{width: 200px;}
+           }
+            
+        }
+    }
+
+`;
+
+export const SendButton = styled.button`
+    padding: 10px;
+    background-color: #ed3237;
+    color: #FFF;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border: 0;
+`;
