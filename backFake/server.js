@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -6,9 +7,6 @@ const pessoa = {
     email: "use@gmail",
     pass: "123"
 }
-
-
-
 
 app.get("/", (req, res) => {
     res.send("Bem Vindo");
