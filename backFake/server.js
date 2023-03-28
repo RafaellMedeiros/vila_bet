@@ -13,12 +13,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/teste", (req, res) => {
-    res.send(`Bem Vindo ${req.body.name}`);
+    res.send(`Bem Vindo ${req.params.name}`);
 });
 
 app.post("/login", (req, res) => {
     const {email, pass} = req.body;
-    if (email != pessoa.email && pass != pessoa.pass) {
+    if (email == pessoa.email && pass == pessoa.pass) {
         res.send("conectado");
     }
 });
