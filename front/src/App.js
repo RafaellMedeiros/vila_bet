@@ -4,19 +4,20 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 import { Template } from "./components/MainComponents";
 import Header from "./components/partials/Header";
+import Footer from "./components/partials/Footer";
 
 import { Routes } from "./Routes";
-import './App.css'
+import "./App.css";
 
 const Page = (props) => {
   return (
     <BrowserRouter>
       <Template>
-        <Header/>
+        <Header />
 
-        <Routes/>
+        <Routes />
 
-        
+        <Footer />
       </Template>
     </BrowserRouter>
   );
@@ -24,14 +25,12 @@ const Page = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-
-  }
-}
+  return {};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page);
