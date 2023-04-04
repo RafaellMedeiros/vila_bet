@@ -65,7 +65,9 @@ export const Routes = () => {
     {
       path: "/apostas",
       element: (
-        <Protected isLogged={isLogged}>
+        <Protected isLogged={true}>
+          {" "}
+          {/* lembrar de voltar pra islogged */}
           <Bets />
         </Protected>
       ),

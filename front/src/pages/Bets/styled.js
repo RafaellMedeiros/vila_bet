@@ -10,6 +10,7 @@ export const PageArea = styled.div`
   .games {
     margin: 10px;
     .time {
+      width: 200px;
       text-align: justify;
       border: 1px solid #999;
       margin: 5px 0;
@@ -54,6 +55,9 @@ export const PageArea = styled.div`
         width: 350px;
         font-size: 25px;
         padding: 5px 0;
+      }
+      .time {
+        width: 350px;
       }
     }
   }

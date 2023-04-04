@@ -290,7 +290,7 @@ const Page = () => {
         </div>
       </PageArea>
       <SendButtonArea>
-        <SendButton onClick={handleSendButton}>Enviar apostas</SendButton>
+        {/* <SendButton onClick={handleSendButton}>Enviar apostas</SendButton> */}
         <ConfirmationModal />
       </SendButtonArea>
     </PageContainer>

@@ -16,15 +16,15 @@ export const ConfirmationModal = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Confirmação</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>Confira se os jogos estão corretos!</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cancelar
           </Button>
           <Button variant="primary" onClick={handleClose}>
-            Save Changes
+            Confirmar
           </Button>
         </Modal.Footer>
       </Modal>
