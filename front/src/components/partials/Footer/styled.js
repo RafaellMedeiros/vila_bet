@@ -15,7 +15,6 @@ export const FooterArea = styled.div`
 `;
 
 export const TextArea = styled.div`
-  height: 25px;
   width: auto;
   cursor: pointer;
   padding: 5px;

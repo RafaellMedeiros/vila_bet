@@ -11,18 +11,67 @@ import Results from "./pages/Results";
 import Bets from "./pages/Bets";
 import Confirmation from "./pages/Confirmation";
 import NotFound from "./pages/NotFound";
+import Protected from "./components/protected/protected";
+import Logout from "./pages/Logout";
+import useApi from "./services/api";
 
 export const Routes = () => {
+  const api = useApi();
+  const isLogged = api.validateToken();
+  console.log("islogged: ", isLogged);
+
   return useRoutes([
     { path: "/", element: <Home /> },
-    { path: "/admin", element: <Admin /> },
-    { path: "/analise", element: <Analysis /> },
-    { path: "/cadrep", element: <CadSeller /> },
-    { path: "/jogos", element: <GamesWeek /> },
-    { path: "/resultados", element: <Results /> },
-    { path: "/apostas", element: <Bets /> },
+    {
+      path: "/admin",
+      element: (
+        <Protected isLogged={isLogged}>
+          <Admin />
+        </Protected>
+      ),
+    },
+    {
+      path: "/admin/analise",
+      element: (
+        <Protected isLogged={isLogged}>
+          <Analysis />
+        </Protected>
+      ),
+    },
+    {
+      path: "/admin/cadrep",
+      element: (
+        <Protected isLogged={isLogged}>
+          <CadSeller />
+        </Protected>
+      ),
+    },
+    {
+      path: "/admin/jogos",
+      element: (
+        <Protected isLogged={isLogged}>
+          <GamesWeek />
+        </Protected>
+      ),
+    },
+    {
+      path: "/admin/resultados",
+      element: (
+        <Protected isLogged={isLogged}>
+          <Results />
+        </Protected>
+      ),
+    },
+    {
+      path: "/apostas",
+      element: (
+        <Protected isLogged={isLogged}>
+          <Bets />
+        </Protected>
+      ),
+    },
     { path: "/apostas/confirmacao", element: <Confirmation /> },
-
+    { path: "/logout", element: <Logout /> },
     { path: "*", element: <NotFound /> },
   ]);
 };
