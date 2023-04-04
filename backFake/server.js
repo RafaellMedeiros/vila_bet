@@ -12,8 +12,8 @@ app.get("/", (req, res) => {
     res.send("Bem Vindo");
 });
 
-app.get("/teste", (req, res) => {
-    res.send(`Bem Vindo ${req.params.name}`);
+app.get("/teste/:name", (req, res) => {
+    res.send(`Bem Vindo ${req.query.name}`);
 });
 
 app.post("/login", (req, res) => {
