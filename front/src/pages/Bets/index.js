@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageContainer, PageTitle } from "../../components/MainComponents";
 import { PageArea, InfosArea, SendButton, SendButtonArea } from "./styled";
+import { ConfirmationModal } from "../../components/Modal";
 
 const Page = () => {
   const [name, setName] = useState("");
@@ -165,7 +166,7 @@ const Page = () => {
     setDisabled(false);
   };
   const handleSendButton = () => {
-    window.location.href = "/apostas/ticket";
+    window.location.href = "/apostas/confirmacao";
   };
 
   return (
@@ -229,7 +230,7 @@ const Page = () => {
             <div className="games" key={k}>
               <h3 key={k}>Jogo {k + 1}</h3>
 
-              <label for={`${k}`}>
+              <label htmlFor={`${k}`}>
                 <div
                   className="time"
                   style={{
@@ -247,7 +248,7 @@ const Page = () => {
                   {i.teams.home}
                 </div>
               </label>
-              <label for={`${k}1`}>
+              <label htmlFor={`${k}1`}>
                 <div
                   className="time"
                   style={{
@@ -265,7 +266,7 @@ const Page = () => {
                   Empate
                 </div>
               </label>
-              <label for={`${k}2`}>
+              <label htmlFor={`${k}2`}>
                 <div
                   className="time"
                   style={{
@@ -289,7 +290,8 @@ const Page = () => {
         </div>
       </PageArea>
       <SendButtonArea>
-        <SendButton onClick={handleSendButton}>Enviar apostas</SendButton>
+        {/* <SendButton onClick={handleSendButton}>Enviar apostas</SendButton> */}
+        <ConfirmationModal />
       </SendButtonArea>
     </PageContainer>
   );

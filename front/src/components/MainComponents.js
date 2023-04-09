@@ -11,6 +11,7 @@ export const PageTitle = styled.h1`
   font-size: 27px;
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 `;
 
 export const PageBody = styled.div``;
