@@ -20,6 +20,7 @@ const Page = () => {
     if (result.token) {
       localStorage.setItem("token", result.token);
       if (result.isAdmin) {
+        //tirar esse if
         history("/admin");
       } else {
         history("/apostas");

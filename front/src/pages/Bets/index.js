@@ -1,15 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageContainer, PageTitle } from "../../components/MainComponents";
 import { PageArea, InfosArea, SendButton, SendButtonArea } from "./styled";
-import { ConfirmationModal } from "../../components/Modal";
+import Modal from "../../components/Modal";
+import ModalInfos from "../../components/ModalInfos";
+import useApi from "../../services/api";
 
 const Page = () => {
+  const api = useApi();
+  const getUser = async () => {
+    const user = await api.getUser();
+    return user;
+  };
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [selller, setSeller] = useState("Vendedor");
+  const [seller, setSeller] = useState("");
   const [disabled, setDisabled] = useState(false);
+
+  const [modalStatus, setModalStatus] = useState(false);
+  const [modalData, setModalData] = useState([]);
+
+  useEffect(() => {
+    api.getUser().then((data) => setSeller(data.fullName));
+    console.log(seller);
+  }, []);
 
   const [games, setGames] = useState([
     {
@@ -166,7 +181,8 @@ const Page = () => {
     setDisabled(false);
   };
   const handleSendButton = () => {
-    window.location.href = "/apostas/confirmacao";
+    setModalData(games);
+    setModalStatus(true);
   };
 
   return (
@@ -214,12 +230,7 @@ const Page = () => {
           <label className="area">
             <div className="area--title">Responsável:</div>
             <div className="area--input">
-              <input
-                type="email"
-                disabled={disabled}
-                value={selller}
-                required
-              />
+              <input type="email" disabled={disabled} value={seller} required />
             </div>
           </label>
         </form>
@@ -290,8 +301,10 @@ const Page = () => {
         </div>
       </PageArea>
       <SendButtonArea>
-        {/* <SendButton onClick={handleSendButton}>Enviar apostas</SendButton> */}
-        <ConfirmationModal />
+        <SendButton onClick={handleSendButton}>Enviar apostas</SendButton>
+        <Modal status={modalStatus} setStatus={setModalStatus}>
+          <ModalInfos data={modalData} setStatus={setModalStatus} />
+        </Modal>
       </SendButtonArea>
     </PageContainer>
   );

@@ -20,18 +20,37 @@ export const PageArea = styled.div`
       margin-bottom: 10px;
     }
   }
-  button {
-    background-color: #47141d;
-    border: 0;
-    outline: 0;
-    padding: 5px 10px;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
+  .area--button {
+    width: 1000px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0;
+    padding-right: 30px;
+    button {
+      background-color: #47141d;
+      width: 100px;
+      border: 0;
+      outline: 0;
+      padding: 5px 10px;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 17px;
+      cursor: pointer;
 
-    &:hover {
-      background-color: #ca3237;
+      &:hover {
+        background-color: #781010;
+      }
     }
+  }
+`;
+
+export const DateLimit = styled.div`
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  margin-left: 50px;
+  .date-limit-title {
+    margin-right: 10px;
+    font-size: 20px;
   }
 `;
