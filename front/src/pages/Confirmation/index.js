@@ -10,24 +10,26 @@ import {
   PrintArea,
 } from "./styled";
 import WppImage from "./assets/whatsapp.png";
+import useApi from "../../services/api";
 
 const Page = () => {
   const navigate = useNavigate();
+  const api = useApi();
   const { id } = useParams();
   const [isChecked, setIsChecked] = useState(false);
   const [showLink, setShowLink] = useState(false);
   const [Nocopied, setNoCopied] = useState(true);
   const [ticket, setTicket] = useState([]);
   useEffect(() => {
-    const response = async () => {
-      //setTicket(await api.funcao())
-    };
+    api.getBet(id).then((data) => setTicket(data));
   }, []);
 
   const handleSendWpp = () => {};
   const handlePrint = () => {
     window.print();
   };
+  console.log(ticket);
+  console.log("id:", id);
 
   return (
     <PageContainer>

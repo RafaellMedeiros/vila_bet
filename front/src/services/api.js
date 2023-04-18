@@ -18,6 +18,10 @@ const request = async (method, endpoint, params, token = null) => {
     case "delet":
       body = JSON.stringify(params);
       break;
+    case "getBody":
+      body = JSON.stringify(params);
+      method = "get";
+      break;
   }
   let headers = { "Content-Type": "application/json" };
   if (token) {
@@ -108,6 +112,11 @@ export default () => {
       let token = localStorage.getItem("token");
       let json = await request("post", "games/new-game", object, token);
 
+      return json;
+    },
+    getBet: async (id) => {
+      let token = localStorage.getItem("token");
+      let json = await request("getBody", "games/my", { id }, token);
       return json;
     },
   };
