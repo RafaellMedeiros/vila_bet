@@ -23,7 +23,7 @@ const Page = () => {
   const navigate = useNavigate();
 
   const handleBackButton = () => {
-    navigate(-1);
+    navigate("/admin");
   };
 
   const handleSubmit = (e) => {

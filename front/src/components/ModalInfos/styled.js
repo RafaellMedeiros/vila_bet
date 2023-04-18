@@ -1,13 +1,17 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 650px;
-  padding: 20px;
+  width: 550px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const ModalArea = styled.div`
-  height: 200px;
+  height: 460px;
   display: flex;
+  flex-direction: column;
 `;
 
 export const ModalButtons = styled.div`
@@ -26,25 +30,30 @@ export const ModalInfoArea = styled.div`
 `;
 
 export const ModalDetails = styled.div`
-  .modalgames {
-    display: flex;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  td {
+    text-align: center;
   }
 `;
 
 export const ModalTitle = styled.div`
   font-size: 30px;
   font-weight: bold;
+  text-align: center;
 `;
 
 export const ModalButton = styled.button`
   border: 0;
-  background-color: #073c07;
+  background-color: #47141d;
   box-shadow: 4px 5px 0px rgba(0, 0, 0, 0.16);
   color: #fff;
-  font-size: ${(props) => (props.small ? "13px" : "22px")};
+  font-size: 17px;
   font-weight: bold;
-  padding: ${(props) => (props.small ? "5px 10" : "10px 20px")};
+  padding: 10px 15px;
   margin-left: 10px;
   border-radius: 5px;
+  margin-bottom: 10px;
   cursor: pointer;
 `;

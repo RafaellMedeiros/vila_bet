@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-anonymous-default-export */
-const baseUrl = "http://localhost:5000/";
+const baseUrl = "http://localhost:3000/";
 
 const request = async (method, endpoint, params, token = null) => {
   method = method.toLowerCase();
@@ -80,13 +80,34 @@ export default () => {
       return json;
     },
     gamesWeek: async (gamesWeek, dateLimit) => {
+      const object = { gamesWeek, dataLimit: dateLimit.toString() };
       let token = localStorage.getItem("token");
       let json = await request(
         "post",
         "games-week/new-games-week",
-        { gamesWeek, dateLimit },
+        object,
         token
       );
+      return json;
+    },
+    getGamesWeek: async () => {
+      let token = localStorage.getItem("token");
+      let json = await request("get", "games-week", {}, token);
+      return json;
+    },
+    sendBet: async (data) => {
+      const object = {
+        results: data.games,
+        punter: {
+          name: data.name,
+          telephone: data.phone,
+          address: data.address,
+          cpf: data.seller.sellerId,
+        },
+      };
+      let token = localStorage.getItem("token");
+      let json = await request("post", "games/new-game", object, token);
+
       return json;
     },
   };

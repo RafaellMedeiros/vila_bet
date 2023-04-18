@@ -1,252 +1,115 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { PageContainer, PageTitle } from "../../components/MainComponents";
 import {
   PageArea,
-  LinkArea,
+  WppButton,
   NewBetButton,
   ButtonsArea,
-  ConfirmButton,
-  DeleteButton,
-  CoppyButton,
+  PrintTicketButton,
+  PrintArea,
 } from "./styled";
+import WppImage from "./assets/whatsapp.png";
 
 const Page = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [isChecked, setIsChecked] = useState(false);
   const [showLink, setShowLink] = useState(false);
   const [Nocopied, setNoCopied] = useState(true);
+  const [ticket, setTicket] = useState([]);
+  useEffect(() => {
+    const response = async () => {
+      //setTicket(await api.funcao())
+    };
+  }, []);
 
-  const [games, setGames] = useState([
-    {
-      teams: {
-        home: "Treze",
-        away: "Queimadense",
-      },
-      result: "home",
-    },
-    {
-      teams: {
-        home: "Sousa",
-        away: "CSP",
-      },
-      result: "home",
-    },
-    {
-      teams: {
-        home: "Auto Esporte",
-        away: "Campinense",
-      },
-      result: "away",
-    },
-    {
-      teams: {
-        home: "Nacional",
-        away: "Botafogo",
-      },
-      result: "away",
-    },
-    {
-      teams: {
-        home: "São Paulo Cristal",
-        away: "Serra Branca",
-      },
-      result: "draw",
-    },
-    {
-      teams: {
-        home: "Treze",
-        away: "Queimadense",
-      },
-      result: "home",
-    },
-    {
-      teams: {
-        home: "Sousa",
-        away: "CSP",
-      },
-      result: "home",
-    },
-    {
-      teams: {
-        home: "Auto Esporte",
-        away: "Campinense",
-      },
-      result: "away",
-    },
-    {
-      teams: {
-        home: "Nacional",
-        away: "Botafogo",
-      },
-      result: "away",
-    },
-    {
-      teams: {
-        home: "São Paulo Cristal",
-        away: "Serra Branca",
-      },
-      result: "draw",
-    },
-    {
-      teams: {
-        home: "Treze",
-        away: "Queimadense",
-      },
-      result: "home",
-    },
-    {
-      teams: {
-        home: "Sousa",
-        away: "CSP",
-      },
-      result: "home",
-    },
-    {
-      teams: {
-        home: "Auto Esporte",
-        away: "Campinense",
-      },
-      result: "away",
-    },
-    {
-      teams: {
-        home: "Nacional",
-        away: "Botafogo",
-      },
-      result: "away",
-    },
-    {
-      teams: {
-        home: "São Paulo Cristal",
-        away: "Serra Branca",
-      },
-      result: "draw",
-    },
-    {
-      teams: {
-        home: "Treze",
-        away: "Queimadense",
-      },
-      result: "home",
-    },
-    {
-      teams: {
-        home: "Sousa",
-        away: "CSP",
-      },
-      result: "home",
-    },
-    {
-      teams: {
-        home: "Auto Esporte",
-        away: "Campinense",
-      },
-      result: "away",
-    },
-    {
-      teams: {
-        home: "Nacional",
-        away: "Botafogo",
-      },
-      result: "away",
-    },
-    {
-      teams: {
-        home: "São Paulo Cristal",
-        away: "Serra Branca",
-      },
-      result: "draw",
-    },
-  ]);
-
-  const handleOnChange = (index, value) => {
-    const gamesCopy = [...games];
-    gamesCopy[index].result = value;
-    setGames(gamesCopy);
+  const handleSendWpp = () => {};
+  const handlePrint = () => {
+    window.print();
   };
 
-  const handleBackButton = () => {
-    window.location.href = "/apostas";
-  };
-
-  const handleConfirmButton = () => {
-    setShowLink(true);
-  };
-  const handleDeleteButton = () => {
-    if (window.confirm("Tem certeza que quer apagar?")) {
-      window.location.href = "/apostas";
-    }
-  };
-  const handleCoppyButton = () => {
-    setNoCopied(false);
-  };
   return (
     <PageContainer>
-      <PageTitle>Confirmação da Aposta</PageTitle>
+      <PageTitle>Aposta enviada com sucesso!</PageTitle>
       <PageArea>
-        <div className="container">
-          {games.map((i, k) => (
-            <div className="games" key={k}>
-              <h3 key={k}>Jogo {k + 1}</h3>
-
-              <div
-                className="time"
-                style={{
-                  backgroundColor: i.result === "home" ? "#781010" : "",
-                  color: i.result === "home" ? "#FFF" : "",
-                }}
-              >
-                {i.teams.home}
-              </div>
-
-              <div
-                className="time"
-                style={{
-                  backgroundColor: i.result === "draw" ? "#781010" : "",
-                  color: i.result === "draw" ? "#FFF" : "",
-                }}
-              >
-                Empate
-              </div>
-
-              <div
-                className="time"
-                style={{
-                  backgroundColor: i.result === "away" ? "#781010" : "",
-                  color: i.result === "away" ? "#FFF" : "",
-                }}
-              >
-                {i.teams.away}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {!showLink && (
-          <ButtonsArea>
-            <ConfirmButton onClick={handleConfirmButton}>
-              Confirmar
-            </ConfirmButton>
-            <DeleteButton onClick={handleDeleteButton}>Apagar</DeleteButton>
-          </ButtonsArea>
-        )}
-        {showLink && (
-          <>
-            <LinkArea>
-              <CoppyButton onClick={handleCoppyButton}>
-                Copiar Link do Ticket
-              </CoppyButton>
-              <NewBetButton
-                onClick={handleBackButton}
-                disabled={Nocopied}
-                style={{ opacity: Nocopied ? 0.8 : 1 }}
-              >
-                Nova Aposta
-              </NewBetButton>
-            </LinkArea>
-          </>
-        )}
+        <PrintArea>
+          <head>
+            <title>Ticket de Aposta - Vila Bet</title>
+          </head>
+          <body>
+            <h1>Ticket - Vila Bet</h1>
+            <p>
+              <strong>identificador: </strong> {id}
+            </p>
+            <table>
+              <tr>
+                <th>Jogo</th>
+                <th>Resultado</th>
+              </tr>
+              <tr>
+                <td>Flamengo x Vasco</td>
+                <td>Flamengo</td>
+              </tr>
+              <tr>
+                <td>São Paulo x Palmeiras</td>
+                <td>Empate</td>
+              </tr>
+              <tr>
+                <td>Corinthians x Santos</td>
+                <td>Corinthians</td>
+              </tr>
+              <tr>
+                <td>Flamengo x Vasco</td>
+                <td>Flamengo</td>
+              </tr>
+              <tr>
+                <td>São Paulo x Palmeiras</td>
+                <td>Empate</td>
+              </tr>
+              <tr>
+                <td>Corinthians x Santos</td>
+                <td>Corinthians</td>
+              </tr>
+              <tr>
+                <td>Flamengo x Vasco</td>
+                <td>Flamengo</td>
+              </tr>
+              <tr>
+                <td>Corinthians x Santos</td>
+                <td>Corinthians</td>
+              </tr>
+              <tr>
+                <td>Flamengo x Vasco</td>
+                <td>Flamengo</td>
+              </tr>
+              <tr>
+                <td>São Paulo x Palmeiras</td>
+                <td>Empate</td>
+              </tr>
+              <tr>
+                <td>Corinthians x Santos</td>
+                <td>Corinthians</td>
+              </tr>
+              <tr>
+                <td>São Paulo x Palmeiras</td>
+                <td>Empate</td>
+              </tr>
+              <tr>
+                <td>Corinthians x Santos</td>
+                <td>Corinthians</td>
+              </tr>
+            </table>
+          </body>
+        </PrintArea>
+        <ButtonsArea>
+          <WppButton onClick={handleSendWpp}>
+            <img src={WppImage} alt="" />
+            <div className="wpp-text">Envie o ticket para o apostador.</div>
+          </WppButton>
+          <NewBetButton>Nova aposta</NewBetButton>
+          <PrintTicketButton onClick={handlePrint}>Imprimir</PrintTicketButton>
+        </ButtonsArea>
       </PageArea>
     </PageContainer>
   );

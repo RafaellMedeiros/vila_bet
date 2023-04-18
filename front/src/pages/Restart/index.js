@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import { HomeContainer, HomeTitle, PageArea } from "./styled.js";
 import useApi from "../../services/api.js";
 import { useNavigate } from "react-router-dom";
+import { Back } from "../../components/MainComponents.js";
 
 const Page = () => {
   const api = useApi();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberPassword, setRememberPassword] = useState(false);
@@ -21,20 +22,24 @@ const Page = () => {
       localStorage.setItem("token", result.token);
       if (result.isAdmin) {
         //tirar esse if
-        history("/admin");
+        navigate("/admin");
       } else {
-        history("/apostas");
+        navigate("/apostas");
       }
     }
     console.log(result);
     setDisabled(false);
   };
+  const handleBackButton = () => {
+    navigate("/admin");
+  };
   return (
     <HomeContainer>
+      <Back onClick={handleBackButton}>Voltar</Back>
       <HomeTitle>
-        Bem-vindo a VilaBet!
+        Para recomeçar uma nova semana
         <br />
-        Fazer Login:
+        faça login novamente.
       </HomeTitle>
       <PageArea>
         <form onSubmit={handleSubmit}>

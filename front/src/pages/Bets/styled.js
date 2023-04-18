@@ -9,6 +9,10 @@ export const PageArea = styled.div`
   }
   .games {
     margin: 10px;
+    label {
+      display: flex;
+      justify-content: center;
+    }
     .time {
       width: 200px;
       text-align: justify;
@@ -68,22 +72,22 @@ export const InfosArea = styled.div`
   margin-bottom: 20px;
   border: 1px solid #999;
   padding: 15px 0;
-  form {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
 
-    .area {
-      width: 235px;
-      padding: 0 15px;
-      .area--input {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+  .area {
+    width: 235px;
+    padding: 0 15px;
+    .area--input {
+      width: 200px;
+      input {
         width: 200px;
-        input {
-          width: 200px;
-        }
       }
     }
   }
+
   @media (max-width: 500px) {
     margin: 0 10px;
     form {

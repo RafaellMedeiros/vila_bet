@@ -13,12 +13,14 @@ import Confirmation from "./pages/Confirmation";
 import NotFound from "./pages/NotFound";
 import Protected from "./components/protected/protected";
 import Logout from "./pages/Logout";
+import Restart from "./pages/Restart";
+import Ranking from "./pages/Ranking";
 import useApi from "./services/api";
 
 export const Routes = () => {
   const api = useApi();
   const isLogged = api.validateToken();
-  console.log("islogged: ", isLogged);
+  console.log(isLogged);
 
   return useRoutes([
     { path: "/", element: <Home /> },
@@ -63,16 +65,30 @@ export const Routes = () => {
       ),
     },
     {
+      path: "/admin/zerar",
+      element: (
+        <Protected isLogged={isLogged}>
+          <Restart />
+        </Protected>
+      ),
+    },
+    {
+      path: "/admin/ranking",
+      element: (
+        <Protected isLogged={isLogged}>
+          <Ranking />
+        </Protected>
+      ),
+    },
+    {
       path: "/apostas",
       element: (
         <Protected isLogged={isLogged}>
-          {" "}
-          {/* lembrar de voltar pra islogged */}
           <Bets />
         </Protected>
       ),
     },
-    { path: "/apostas/confirmacao", element: <Confirmation /> },
+    { path: "/apostas/confirmacao/:id", element: <Confirmation /> },
     { path: "/logout", element: <Logout /> },
     { path: "*", element: <NotFound /> },
   ]);

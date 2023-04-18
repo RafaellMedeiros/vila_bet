@@ -15,164 +15,27 @@ const Page = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [seller, setSeller] = useState("");
+  const [seller, setSeller] = useState({ fullName: "", sellerId: "" });
   const [disabled, setDisabled] = useState(false);
 
   const [modalStatus, setModalStatus] = useState(false);
   const [modalData, setModalData] = useState([]);
-
+  const [games, setGames] = useState([]);
+  let sellerId;
   useEffect(() => {
-    api.getUser().then((data) => setSeller(data.fullName));
-    console.log(seller);
+    api.getUser().then((data) => {
+      setSeller({ fullName: data.fullName, sellerId: data.cpf });
+    });
   }, []);
-
-  const [games, setGames] = useState([
-    {
-      teams: {
-        home: "Treze",
-        away: "Queimadense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Sousa",
-        away: "CSP",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Auto Esporte",
-        away: "Campinense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Nacional",
-        away: "Botafogo",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "São Paulo Cristal",
-        away: "Serra Branca",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Treze",
-        away: "Queimadense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Sousa",
-        away: "CSP",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Auto Esporte",
-        away: "Campinense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Nacional",
-        away: "Botafogo",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "São Paulo Cristal",
-        away: "Serra Branca",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Treze",
-        away: "Queimadense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Sousa",
-        away: "CSP",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Auto Esporte",
-        away: "Campinense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Nacional",
-        away: "Botafogo",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "São Paulo Cristal",
-        away: "Serra Branca",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Treze",
-        away: "Queimadense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Sousa",
-        away: "CSP",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Auto Esporte",
-        away: "Campinense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Nacional",
-        away: "Botafogo",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "São Paulo Cristal",
-        away: "Serra Branca",
-      },
-      result: "",
-    },
-  ]);
+  useEffect(() => {
+    api.getGamesWeek().then((data) => setGames(data));
+  }, []);
 
   const handleOnChange = (index, value) => {
     const gamesCopy = [...games];
     gamesCopy[index].result = value;
     setGames(gamesCopy);
+    console.log(games);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -180,16 +43,40 @@ const Page = () => {
 
     setDisabled(false);
   };
-  const handleSendButton = () => {
-    setModalData(games);
-    setModalStatus(true);
+  const handleSendButton = (e) => {
+    e.preventDefault();
+    if (canSubmit()) {
+      const infos = { games, name, phone, address, seller };
+      console.log("infos", infos);
+      setModalData(infos);
+      setModalStatus(true);
+    } else {
+      alert("Preencha todos os campos!");
+    }
+  };
+  const canSubmit = () => {
+    if (isUserContactFormValid() && isAllGamesFilled) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const isUserContactFormValid = () => {
+    if (name !== "" && phone !== "" && address !== "") {
+      return true;
+    } else {
+      return false;
+    }
   };
 
+  const isAllGamesFilled = games.every((game) => game.result);
+
+  console.log(games);
   return (
     <PageContainer>
       <PageTitle>Apostas da semana</PageTitle>
-      <InfosArea>
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSendButton}>
+        <InfosArea>
           <label className="area">
             <div className="area--title">Nome:</div>
             <div className="area--input">
@@ -211,7 +98,6 @@ const Page = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
-                pattern="[0-9]{2}-[0-9]{5}-[0-9]{4}"
               />
             </div>
           </label>
@@ -230,82 +116,83 @@ const Page = () => {
           <label className="area">
             <div className="area--title">Responsável:</div>
             <div className="area--input">
-              <input type="email" disabled={disabled} value={seller} required />
+              <p>{seller.fullName}</p>
             </div>
           </label>
-        </form>
-      </InfosArea>
-      <PageArea>
-        <div className="container">
-          {games.map((i, k) => (
-            <div className="games" key={k}>
-              <h3 key={k}>Jogo {k + 1}</h3>
+        </InfosArea>
+        <PageArea>
+          <div className="container">
+            {games &&
+              games.map((i, k) => (
+                <div className="games" key={k}>
+                  <h3 key={k}>Jogo {k + 1}</h3>
 
-              <label htmlFor={`${k}`}>
-                <div
-                  className="time"
-                  style={{
-                    backgroundColor: i.result === "home" ? "#781010" : "",
-                    color: i.result === "home" ? "#FFF" : "",
-                  }}
-                >
-                  <input
-                    type="radio"
-                    value={"home"}
-                    name={k + "resultado"}
-                    id={`${k}`}
-                    onChange={() => handleOnChange(k, "home")}
-                  />
-                  {i.teams.home}
+                  <label htmlFor={`${k}`}>
+                    <div
+                      className="time"
+                      style={{
+                        backgroundColor: i.result === "home" ? "#781010" : "",
+                        color: i.result === "home" ? "#FFF" : "",
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        value={"home"}
+                        name={k + "resultado"}
+                        id={`${k}`}
+                        onChange={() => handleOnChange(k, "home")}
+                      />
+                      {i.time_home}
+                    </div>
+                  </label>
+                  <label htmlFor={`${k}1`}>
+                    <div
+                      className="time"
+                      style={{
+                        backgroundColor: i.result === "draw" ? "#781010" : "",
+                        color: i.result === "draw" ? "#FFF" : "",
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        value={"draw"}
+                        name={k + "resultado"}
+                        id={`${k}1`}
+                        onChange={() => handleOnChange(k, "draw")}
+                      />
+                      Empate
+                    </div>
+                  </label>
+                  <label htmlFor={`${k}2`}>
+                    <div
+                      className="time"
+                      style={{
+                        backgroundColor: i.result === "away" ? "#781010" : "",
+                        color: i.result === "away" ? "#FFF" : "",
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        value={"away"}
+                        name={k + "resultado"}
+                        id={`${k}2`}
+                        selected={i.result === "away"}
+                        onChange={() => handleOnChange(k, "away")}
+                      />
+                      {i.time_away}
+                    </div>
+                  </label>
                 </div>
-              </label>
-              <label htmlFor={`${k}1`}>
-                <div
-                  className="time"
-                  style={{
-                    backgroundColor: i.result === "draw" ? "#781010" : "",
-                    color: i.result === "draw" ? "#FFF" : "",
-                  }}
-                >
-                  <input
-                    type="radio"
-                    value={"draw"}
-                    name={k + "resultado"}
-                    id={`${k}1`}
-                    onChange={() => handleOnChange(k, "draw")}
-                  />
-                  Empate
-                </div>
-              </label>
-              <label htmlFor={`${k}2`}>
-                <div
-                  className="time"
-                  style={{
-                    backgroundColor: i.result === "away" ? "#781010" : "",
-                    color: i.result === "away" ? "#FFF" : "",
-                  }}
-                >
-                  <input
-                    type="radio"
-                    value={"away"}
-                    name={k + "resultado"}
-                    id={`${k}2`}
-                    selected={i.result === "away"}
-                    onChange={() => handleOnChange(k, "away")}
-                  />
-                  {i.teams.away}
-                </div>
-              </label>
-            </div>
-          ))}
-        </div>
-      </PageArea>
-      <SendButtonArea>
-        <SendButton onClick={handleSendButton}>Enviar apostas</SendButton>
-        <Modal status={modalStatus} setStatus={setModalStatus}>
-          <ModalInfos data={modalData} setStatus={setModalStatus} />
-        </Modal>
-      </SendButtonArea>
+              ))}
+          </div>
+        </PageArea>
+        <SendButtonArea>
+          <SendButton onClick={handleSendButton}>Enviar apostas</SendButton>
+          <Modal status={modalStatus} setStatus={setModalStatus}>
+            <ModalInfos data={modalData} setStatus={setModalStatus} />
+          </Modal>
+        </SendButtonArea>
+      </form>
     </PageContainer>
   );
 };

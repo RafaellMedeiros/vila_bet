@@ -12,6 +12,9 @@ export const PageTitle = styled.h1`
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  @media print {
+    display: none;
+  }
 `;
 
 export const PageBody = styled.div``;

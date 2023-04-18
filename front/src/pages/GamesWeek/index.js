@@ -12,26 +12,26 @@ import useApi from "../../services/api";
 const Page = () => {
   const api = useApi();
   const [games, setGames] = useState([
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" } /* 
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" },
-    { home: "", away: "" }, */,
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" } /* 
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" },
+    { timeHome: "", timeAway: "" }, */,
   ]);
   const [dateLimit, setDateLimit] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -39,21 +39,22 @@ const Page = () => {
   const navigate = useNavigate();
 
   const handleBackButton = () => {
-    navigate(-1);
+    navigate("/admin");
   };
   const handleChangeHome = (index, value) => {
     const gamesCopy = [...games];
-    gamesCopy[index].home = value;
+    gamesCopy[index].timeHome = value;
     setGames(gamesCopy);
   };
   const handleChangeAway = (index, value) => {
     const gamesCopy = [...games];
-    gamesCopy[index].away = value;
+    gamesCopy[index].timeAway = value;
     setGames(gamesCopy);
   };
-  const handleSendButton = () => {
+  const handleSendButton = async (e) => {
+    e.preventDefault();
     if (!isAnyGameEmpty) {
-      api.gamesWeek(games, dateLimit);
+      await api.gamesWeek(games, dateLimit);
     } else {
       alert("Preencha todos os jogos!");
     }
@@ -61,7 +62,7 @@ const Page = () => {
   const isAnyGameEmpty = games.some((game) =>
     Object.values(game).some((value) => !value)
   );
-  console.log(isAnyGameEmpty);
+  console.log(games);
 
   return (
     <PageContainer>
@@ -87,8 +88,8 @@ const Page = () => {
                     Casa:
                     <input
                       type="text"
-                      value={games[k].home}
-                      name={k + "home"}
+                      value={games[k].timeHome}
+                      name={k + "timeHome"}
                       id={`${k}`}
                       onChange={(e) => handleChangeHome(k, e.target.value)}
                       required
@@ -99,8 +100,8 @@ const Page = () => {
                   Fora:
                   <input
                     type="text"
-                    value={games[k].away}
-                    name="away"
+                    value={games[k].timeAway}
+                    name="timeAway"
                     id={`${k + 1}`}
                     onChange={(e) => handleChangeAway(k, e.target.value)}
                     required

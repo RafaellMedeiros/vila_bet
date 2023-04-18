@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import {
@@ -135,7 +134,7 @@ const Page = () => {
     <PageContainer>
       <Back onClick={handleBackButton}>Voltar</Back>
 
-      <PageTitle>Área de análise.</PageTitle>
+      <PageTitle>Ranking da semana</PageTitle>
       <PageArea>
         {!filter && <Filter onClick={handleFilter}>Mostrar filtros</Filter>}
         {filter && (
@@ -237,8 +236,7 @@ const Page = () => {
             <th>Apostador</th>
             <th>Telefone</th>
             <th>Endereço</th>
-            <th>data</th>
-            <th>hora</th>
+            <th>Apostas acertadas</th>
           </tr>
           {aposta.map((i, k) => (
             <tr key={k}>
@@ -247,8 +245,7 @@ const Page = () => {
               <td>{i.apostador}</td>
               <td>{i.telefone}</td>
               <td>{i.endereco}</td>
-              <td>{i.data}</td>
-              <td>{i.hora}</td>
+              <td></td>
             </tr>
           ))}
         </table>
