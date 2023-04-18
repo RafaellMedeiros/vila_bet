@@ -17,7 +17,6 @@ import { useNavigate } from "react-router-dom";
 export default ({ data, setStatus }) => {
   const api = useApi();
   const navigate = useNavigate();
-  console.log("log", data);
   const games = data && data.games ? data.games : [];
   const handleCancelButton = () => {
     setStatus(false);

@@ -5,7 +5,6 @@ function Protected({ children }) {
   const api = useApi();
 
   const hastoken = localStorage.getItem("token");
-  console.log(hastoken);
 
   if (hastoken === null) {
     return <Navigate to="/" replace />;
