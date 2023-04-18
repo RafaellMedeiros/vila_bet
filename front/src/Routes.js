@@ -18,16 +18,12 @@ import Ranking from "./pages/Ranking";
 import useApi from "./services/api";
 
 export const Routes = () => {
-  const api = useApi();
-  const isLogged = api.validateToken();
-  console.log(isLogged);
-
   return useRoutes([
     { path: "/", element: <Home /> },
     {
       path: "/admin",
       element: (
-        <Protected isLogged={isLogged}>
+        <Protected>
           <Admin />
         </Protected>
       ),
@@ -35,7 +31,7 @@ export const Routes = () => {
     {
       path: "/admin/analise",
       element: (
-        <Protected isLogged={isLogged}>
+        <Protected>
           <Analysis />
         </Protected>
       ),
@@ -43,7 +39,7 @@ export const Routes = () => {
     {
       path: "/admin/cadrep",
       element: (
-        <Protected isLogged={isLogged}>
+        <Protected>
           <CadSeller />
         </Protected>
       ),
@@ -51,7 +47,7 @@ export const Routes = () => {
     {
       path: "/admin/jogos",
       element: (
-        <Protected isLogged={isLogged}>
+        <Protected>
           <GamesWeek />
         </Protected>
       ),
@@ -59,7 +55,7 @@ export const Routes = () => {
     {
       path: "/admin/resultados",
       element: (
-        <Protected isLogged={isLogged}>
+        <Protected>
           <Results />
         </Protected>
       ),
@@ -67,7 +63,7 @@ export const Routes = () => {
     {
       path: "/admin/zerar",
       element: (
-        <Protected isLogged={isLogged}>
+        <Protected>
           <Restart />
         </Protected>
       ),
@@ -75,7 +71,7 @@ export const Routes = () => {
     {
       path: "/admin/ranking",
       element: (
-        <Protected isLogged={isLogged}>
+        <Protected>
           <Ranking />
         </Protected>
       ),
@@ -83,7 +79,7 @@ export const Routes = () => {
     {
       path: "/apostas",
       element: (
-        <Protected isLogged={isLogged}>
+        <Protected>
           <Bets />
         </Protected>
       ),
