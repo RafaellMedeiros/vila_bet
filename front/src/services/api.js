@@ -116,7 +116,7 @@ export default () => {
     },
     getBet: async (id) => {
       let token = localStorage.getItem("token");
-      let json = await request("getBody", "games/my", { id }, token);
+      let json = await request("get", "games/my", { id }, token);
       return json;
     },
     sendResultsWeek: async (data) => {
