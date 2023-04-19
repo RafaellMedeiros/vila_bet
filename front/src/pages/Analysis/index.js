@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import {
@@ -7,9 +6,11 @@ import {
   Back,
 } from "../../components/MainComponents";
 import { PageArea, SearchArea, Filter } from "./styled";
+import useApi from "../../services/api";
 
 const Page = () => {
   const history = useNavigate();
+  const api = useApi();
   const useQueryString = () => {
     return new URLSearchParams(useLocation().search);
   };
@@ -50,44 +51,10 @@ const Page = () => {
 
   const [filter, setFilter] = useState(false);
 
-  const [aposta, setAposta] = useState([
-    {
-      id: 1111,
-      revendedor: "Vicente",
-      apostador: "Junior",
-      telefone: "83998034092",
-      endereco: "R. José Doroteia Dutra",
-      data: "14/03/2023",
-      hora: "16:00",
-    },
-    {
-      id: 2222,
-      revendedor: "Vicente",
-      apostador: "Raquel",
-      telefone: "83998034092",
-      endereco: "R. José Doroteia Dutra",
-      data: "14/03/2023",
-      hora: "16:00",
-    },
-    {
-      id: 3333,
-      revendedor: "Ana",
-      apostador: "Renan",
-      telefone: "83998034092",
-      endereco: "R. José Doroteia Dutra",
-      data: "14/03/2023",
-      hora: "16:00",
-    },
-    {
-      id: 4444,
-      revendedor: "Rafael",
-      apostador: "Moises",
-      telefone: "83998034092",
-      endereco: "R. José Doroteia Dutra",
-      data: "14/03/2023",
-      hora: "16:00",
-    },
-  ]);
+  const [aposta, setAposta] = useState([]);
+  useEffect(() => {
+    api.getAnalysis().then((data) => setAposta(data));
+  }, []);
 
   useEffect(() => {
     let queryString = [];
@@ -165,61 +132,19 @@ const Page = () => {
                     />
                   </div>
                 </label>
-                <label className="area">
-                  <div className="area--title">Filtrar por apostador:</div>
-                  <div className="area--input">
-                    <input
-                      type="text"
-                      disabled={disabled}
-                      value={qApostador}
-                      onChange={(e) => setQApostador(e.target.value)}
-                    />
-                  </div>
-                </label>
-                <label className="area">
-                  <div className="area--title">Filtrar por telefone:</div>
-                  <div className="area--input">
-                    <input
-                      type="text"
-                      disabled={disabled}
-                      value={qTelefone}
-                      onChange={(e) => setQTelefone(e.target.value)}
-                    />
-                  </div>
-                </label>
-                <label className="area">
-                  <div className="area--title">Filtrar por endereço:</div>
-                  <div className="area--input">
-                    <input
-                      type="text"
-                      disabled={disabled}
-                      value={qEndereco}
-                      onChange={(e) => setQEndereco(e.target.value)}
-                    />
-                  </div>
-                </label>
+
                 <label className="area">
                   <div className="area--title">Filtrar por data:</div>
                   <div className="area--input">
                     <input
-                      type="text"
+                      type="date"
                       disabled={disabled}
                       value={qData}
                       onChange={(e) => setQData(e.target.value)}
                     />
                   </div>
                 </label>
-                <label className="area">
-                  <div className="area--title">Filtrar por hora:</div>
-                  <div className="area--input">
-                    <input
-                      type="text"
-                      disabled={disabled}
-                      value={qHora}
-                      onChange={(e) => setQHora(e.target.value)}
-                    />
-                  </div>
-                </label>
+
                 <label className="area">
                   <div className="area--title"></div>
                   <div className="area--input--button">
@@ -238,17 +163,15 @@ const Page = () => {
             <th>Telefone</th>
             <th>Endereço</th>
             <th>data</th>
-            <th>hora</th>
           </tr>
           {aposta.map((i, k) => (
             <tr key={k}>
               <td>{i.id}</td>
-              <td>{i.revendedor}</td>
-              <td>{i.apostador}</td>
-              <td>{i.telefone}</td>
-              <td>{i.endereco}</td>
-              <td>{i.data}</td>
-              <td>{i.hora}</td>
+              <td>{i.seller}</td>
+              <td>{i.name}</td>
+              <td>{i.telephone}</td>
+              <td>{i.address}</td>
+              <td>{i.date}</td>
             </tr>
           ))}
         </table>
