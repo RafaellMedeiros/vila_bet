@@ -39,3 +39,27 @@ export const PageArea = styled.div`
     }
   }
 `;
+export const SendButtonArea = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const SendButton = styled.button`
+  padding: 10px;
+  background-color: #47141d;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border: 0;
+  margin-right: 15px;
+  @media (max-width: 500px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    margin-right: 55px;
+    font-size: 20px;
+  }
+`;

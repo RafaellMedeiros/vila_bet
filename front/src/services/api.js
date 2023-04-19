@@ -119,5 +119,16 @@ export default () => {
       let json = await request("getBody", "games/my", { id }, token);
       return json;
     },
+    sendResultsWeek: async (data) => {
+      let token = localStorage.getItem("token");
+      let json = await request(
+        "post",
+        "games-week/result-games-week",
+        { results: data },
+        token
+      );
+
+      return json;
+    },
   };
 };

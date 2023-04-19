@@ -1,168 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   PageContainer,
   PageTitle,
   Back,
 } from "../../components/MainComponents";
-import { PageArea } from "./styled";
+import { PageArea, SendButton, SendButtonArea } from "./styled";
+
+import Modal from "../../components/Modal";
+import ModalInfos from "../../components/ModalInfos";
+import useApi from "../../services/api";
 
 const Page = () => {
   const navigate = useNavigate();
+  const api = useApi();
   const [isChecked, setIsChecked] = useState(false);
-
-  const [games, setGames] = useState([
-    {
-      teams: {
-        home: "Treze",
-        away: "Queimadense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Sousa",
-        away: "CSP",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Auto Esporte",
-        away: "Campinense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Nacional",
-        away: "Botafogo",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "São Paulo Cristal",
-        away: "Serra Branca",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Treze",
-        away: "Queimadense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Sousa",
-        away: "CSP",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Auto Esporte",
-        away: "Campinense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Nacional",
-        away: "Botafogo",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "São Paulo Cristal",
-        away: "Serra Branca",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Treze",
-        away: "Queimadense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Sousa",
-        away: "CSP",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Auto Esporte",
-        away: "Campinense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Nacional",
-        away: "Botafogo",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "São Paulo Cristal",
-        away: "Serra Branca",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Treze",
-        away: "Queimadense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Sousa",
-        away: "CSP",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Auto Esporte",
-        away: "Campinense",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "Nacional",
-        away: "Botafogo",
-      },
-      result: "",
-    },
-    {
-      teams: {
-        home: "São Paulo Cristal",
-        away: "Serra Branca",
-      },
-      result: "",
-    },
-  ]);
+  const [games, setGames] = useState([]);
+  const [modalStatus, setModalStatus] = useState(false);
+  const [modalData, setModalData] = useState([]);
+  useEffect(() => {
+    api.getGamesWeek().then((data) => setGames(data));
+  }, []);
 
   const handleOnChange = (index, value) => {
     const gamesCopy = [...games];
     gamesCopy[index].result = value;
     setGames(gamesCopy);
   };
+  console.log(games);
 
   const handleBackButton = () => {
     navigate("/admin");
   };
+  const handleSendButton = (e) => {
+    e.preventDefault();
+    if (canSubmit()) {
+      const infos = { games, results: true };
+      setModalData(infos);
+      setModalStatus(true);
+    } else {
+      alert("Preencha todos os campos!");
+    }
+  };
+  const canSubmit = () => {
+    if (isAllGamesFilled) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const isAllGamesFilled = games.every((game) => game.result);
   return (
     <PageContainer>
       <Back onClick={handleBackButton}>Voltar</Back>
@@ -188,7 +75,7 @@ const Page = () => {
                     id={`${k}`}
                     onChange={() => handleOnChange(k, "home")}
                   />
-                  {i.teams.home}
+                  {i.time_home}
                 </div>
               </label>
               <label for={`${k}1`}>
@@ -225,13 +112,19 @@ const Page = () => {
                     selected={i.result === "away"}
                     onChange={() => handleOnChange(k, "away")}
                   />
-                  {i.teams.away}
+                  {i.time_away}
                 </div>
               </label>
             </div>
           ))}
         </div>
       </PageArea>
+      <SendButtonArea>
+        <SendButton onClick={handleSendButton}>Enviar resultados</SendButton>
+        <Modal status={modalStatus} setStatus={setModalStatus}>
+          <ModalInfos data={modalData} setStatus={setModalStatus} />
+        </Modal>
+      </SendButtonArea>
     </PageContainer>
   );
 };

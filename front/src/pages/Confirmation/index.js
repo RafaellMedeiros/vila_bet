@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { PageContainer, PageTitle } from "../../components/MainComponents";
 import {
   PageArea,
@@ -30,6 +30,9 @@ const Page = () => {
   };
   console.log(ticket);
   console.log("id:", id);
+  const handleNewBet = () => {
+    <Navigate to="/apostas" />;
+  };
 
   return (
     <PageContainer>
@@ -109,7 +112,7 @@ const Page = () => {
             <img src={WppImage} alt="" />
             <div className="wpp-text">Envie o ticket para o apostador.</div>
           </WppButton>
-          <NewBetButton>Nova aposta</NewBetButton>
+          <NewBetButton onClick={handleNewBet}>Nova aposta</NewBetButton>
           <PrintTicketButton onClick={handlePrint}>Imprimir</PrintTicketButton>
         </ButtonsArea>
       </PageArea>

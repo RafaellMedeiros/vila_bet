@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useQuery } from "react-query";
 import useApi from "../../services/api";
-import { queryClient } from "../../services/query-client";
-
-import { QueryCache } from "react-query";
 
 const Protected = ({ children }) => {
   const api = useApi();

@@ -19,11 +19,11 @@ const Page = () => {
     const result = await api.login(email, password);
     if (result.token) {
       localStorage.setItem("token", result.token);
-      if (result.isAdmin) {
+      if (result.permission === "SELLER") {
         //tirar esse if
-        history("/admin");
-      } else {
         history("/apostas");
+      } else if (result.permission === "ADMIN") {
+        history("/admin");
       }
     }
     console.log(result);

@@ -23,12 +23,21 @@ export default ({ data, setStatus }) => {
   };
 
   const handleConfirmation = async () => {
-    const response = await api.sendBet(data);
-
-    if (response.msg === "game created") {
-      navigate(`/apostas/confirmacao/${response.id}`);
+    if (data.results) {
+      const response = await api.sendResultsWeek(data.games);
+      if (response.msg === "update successfully") {
+        navigate("/admin");
+      } else {
+        alert("Não foi possivel enviar as apostas, tente novamente.");
+      }
     } else {
-      alert("Não foi possivel enviar as apostas, tente novamente.");
+      const response = await api.sendBet(data);
+
+      if (response.msg === "game created") {
+        navigate(`/apostas/confirmacao/${response.id}`);
+      } else {
+        alert("Não foi possivel enviar as apostas, tente novamente.");
+      }
     }
     setStatus(false);
   };

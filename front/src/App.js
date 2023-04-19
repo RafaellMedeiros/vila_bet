@@ -5,20 +5,19 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { Template } from "./components/MainComponents";
 import Header from "./components/partials/Header";
 import Footer from "./components/partials/Footer";
+import { LoggedUserProvider } from "./hooks/LoggedUserProvider";
 
 import { Routes } from "./Routes";
 import "./App.css";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { queryClient } from "./services/query-client";
 
 const Page = (props) => {
   return (
     <BrowserRouter>
       <Template>
         <Header />
-        <QueryClientProvider client={queryClient}>
-          <Routes />
-        </QueryClientProvider>
+
+        <Routes />
+
         <Footer />
       </Template>
     </BrowserRouter>
