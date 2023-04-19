@@ -39,7 +39,7 @@ export default () => {
     },
     validateToken: async () => {
       let token = localStorage.getItem("token");
-      let json = await request("get", "auth/validate", {}, token);
+      let json = await request("post", "auth/validate", {}, token);
       return json;
     },
     login: async (email, password) => {

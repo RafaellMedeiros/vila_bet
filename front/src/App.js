@@ -8,15 +8,17 @@ import Footer from "./components/partials/Footer";
 
 import { Routes } from "./Routes";
 import "./App.css";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { queryClient } from "./services/query-client";
 
 const Page = (props) => {
   return (
     <BrowserRouter>
       <Template>
         <Header />
-
-        <Routes />
-
+        <QueryClientProvider client={queryClient}>
+          <Routes />
+        </QueryClientProvider>
         <Footer />
       </Template>
     </BrowserRouter>
