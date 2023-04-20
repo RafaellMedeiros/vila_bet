@@ -85,26 +85,36 @@ export const InfosArea = styled.div`
       input {
         width: 200px;
       }
+      p {
+        margin: 0;
+      }
     }
   }
 
   @media (max-width: 500px) {
-    margin: 0 10px;
-    form {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
-      .area {
-        width: 400px;
-        .area--input {
-          width: 350px;
-          input {
-            width: 350px;
-            height: 35px;
-            font-size: 17px;
-          }
+    .area {
+      width: 380px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0;
+      .area--title {
+        margin-right: 10px;
+      }
+      .area--input {
+        width: 250px;
+        display: flex;
+        justify-content: flex-end;
+        input {
+          width: 250px;
+          height: 35px;
+          font-size: 17px;
         }
       }
     }

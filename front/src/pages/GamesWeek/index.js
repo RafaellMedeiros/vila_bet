@@ -6,7 +6,7 @@ import {
   PageTitle,
   Back,
 } from "../../components/MainComponents";
-import { PageArea, DateLimit } from "./styled";
+import { PageArea, DateLimit, SendButton, SendButtonArea } from "./styled";
 import useApi from "../../services/api";
 
 const Page = () => {
@@ -66,7 +66,7 @@ const Page = () => {
 
   return (
     <PageContainer>
-      <Back onClick={handleBackButton}>Voltar</Back>
+      <Back onClick={handleBackButton}>Voltar para a página inicial</Back>
       <PageTitle>Cadastro de jogos da semana.</PageTitle>
       <PageArea>
         <form>
@@ -110,17 +110,11 @@ const Page = () => {
               </div>
             ))}
           </div>
-
-          <label className="area--button">
-            <div className="area--title"></div>
-            <div className="area--input">
-              <button disabled={disabled} onClick={handleSendButton}>
-                Enviar
-              </button>
-            </div>
-          </label>
         </form>
       </PageArea>
+      <SendButtonArea>
+        <SendButton onClick={handleSendButton}>Enviar</SendButton>
+      </SendButtonArea>
     </PageContainer>
   );
 };

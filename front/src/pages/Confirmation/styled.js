@@ -83,6 +83,7 @@ export const PrintTicketButton = styled.div`
   @media (max-width: 500px) {
     width: 150px;
     margin-right: 35px;
+    text-align: center;
   }
 `;
 export const WppButton = styled.div`

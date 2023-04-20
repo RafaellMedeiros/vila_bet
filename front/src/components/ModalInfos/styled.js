@@ -6,6 +6,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media (max-width: 500px) {
+    width: 380px;
+    padding-left: 0px;
+  }
 `;
 
 export const ModalArea = styled.div`
@@ -35,6 +39,9 @@ export const ModalDetails = styled.div`
   flex-direction: column;
   td {
     text-align: center;
+  }
+  @media (max-width: 500px) {
+    width: 360px;
   }
 `;
 

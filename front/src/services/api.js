@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 const baseUrl = "http://192.168.0.107:3000/";
 
 const request = async (method, endpoint, params, token = null) => {
@@ -114,7 +115,7 @@ export default () => {
     },
     getBet: async (id) => {
       let token = localStorage.getItem("token");
-      let json = await request("getBody", "games/my", { id }, token);
+      let json = await request("get", "games/my", { id }, token);
       return json;
     },
     sendResultsWeek: async (data) => {

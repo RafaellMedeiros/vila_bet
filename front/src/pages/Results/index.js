@@ -52,7 +52,7 @@ const Page = () => {
   const isAllGamesFilled = games.every((game) => game.result);
   return (
     <PageContainer>
-      <Back onClick={handleBackButton}>Voltar</Back>
+      <Back onClick={handleBackButton}>Voltar para a página inicial</Back>
       <PageTitle>Resultados da semana</PageTitle>
       <PageArea>
         <div className="container">

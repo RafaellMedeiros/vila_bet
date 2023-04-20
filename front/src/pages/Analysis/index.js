@@ -100,7 +100,7 @@ const Page = () => {
   };
   return (
     <PageContainer>
-      <Back onClick={handleBackButton}>Voltar</Back>
+      <Back onClick={handleBackButton}>Voltar para página inicial</Back>
 
       <PageTitle>Área de análise.</PageTitle>
       <PageArea>
@@ -155,7 +155,8 @@ const Page = () => {
             </SearchArea>
           </>
         )}
-        <table border="1">
+
+        <table className="responsive" border="1">
           <tr>
             <th>Id</th>
             <th>revendedor</th>
@@ -175,6 +176,7 @@ const Page = () => {
             </tr>
           ))}
         </table>
+
         <div>Total de apostas: {aposta.length}</div>
       </PageArea>
     </PageContainer>

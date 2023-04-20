@@ -5,7 +5,7 @@ import {
   PageTitle,
   Back,
 } from "../../components/MainComponents";
-import { PageArea } from "./styled";
+import { PageArea, SendButtonArea, SendButton } from "./styled";
 import useApi from "../../services/api";
 
 const Page = () => {
@@ -34,7 +34,7 @@ const Page = () => {
 
   return (
     <PageContainer>
-      <Back onClick={handleBackButton}>Voltar</Back>
+      <Back onClick={handleBackButton}>Voltar para a página inicial</Back>
       <PageTitle>Cadastro de respresentantes</PageTitle>
       <PageArea>
         <form onSubmit={handleSubmit}>
@@ -122,12 +122,9 @@ const Page = () => {
               />
             </div>
           </label>
-          <label className="area">
-            <div className="area--title"></div>
-            <div className="area--input">
-              <button disabled={disabled}>Cadastrar</button>
-            </div>
-          </label>
+          <SendButtonArea>
+            <SendButton>Cadastrar</SendButton>
+          </SendButtonArea>
         </form>
       </PageArea>
     </PageContainer>

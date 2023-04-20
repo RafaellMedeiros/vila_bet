@@ -38,6 +38,27 @@ export const PageArea = styled.div`
       margin-bottom: 10px;
     }
   }
+  @media (max-width: 500px) {
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 350px;
+      justify-content: center;
+      align-items: center;
+      margin-left: 30px;
+      margin-bottom: 15px;
+      gap: 0;
+
+      h3 {
+        width: 350px;
+        font-size: 25px;
+        padding: 5px 0;
+      }
+      .time {
+        width: 350px;
+      }
+    }
+  }
 `;
 export const SendButtonArea = styled.div`
   display: flex;

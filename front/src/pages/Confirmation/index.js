@@ -21,7 +21,7 @@ const Page = () => {
   const [Nocopied, setNoCopied] = useState(true);
   const [ticket, setTicket] = useState([]);
   useEffect(() => {
-    api.getBet(id).then((data) => setTicket(data));
+    api.getBet(id).then((response) => setTicket(response.data));
   }, []);
 
   const handleSendWpp = () => {};
@@ -39,73 +39,28 @@ const Page = () => {
       <PageTitle>Aposta enviada com sucesso!</PageTitle>
       <PageArea>
         <PrintArea>
-          <head>
-            <title>Ticket de Aposta - Vila Bet</title>
-          </head>
-          <body>
-            <h1>Ticket - Vila Bet</h1>
-            <p>
-              <strong>identificador: </strong> {id}
-            </p>
-            <table>
+          <title>Ticket de Aposta - Vila Bet</title>
+
+          <h1>Ticket - Vila Bet</h1>
+          <p>
+            <strong>identificador: </strong> {id}
+          </p>
+          <table>
+            <tbody>
               <tr>
                 <th>Jogo</th>
                 <th>Resultado</th>
               </tr>
-              <tr>
-                <td>Flamengo x Vasco</td>
-                <td>Flamengo</td>
-              </tr>
-              <tr>
-                <td>São Paulo x Palmeiras</td>
-                <td>Empate</td>
-              </tr>
-              <tr>
-                <td>Corinthians x Santos</td>
-                <td>Corinthians</td>
-              </tr>
-              <tr>
-                <td>Flamengo x Vasco</td>
-                <td>Flamengo</td>
-              </tr>
-              <tr>
-                <td>São Paulo x Palmeiras</td>
-                <td>Empate</td>
-              </tr>
-              <tr>
-                <td>Corinthians x Santos</td>
-                <td>Corinthians</td>
-              </tr>
-              <tr>
-                <td>Flamengo x Vasco</td>
-                <td>Flamengo</td>
-              </tr>
-              <tr>
-                <td>Corinthians x Santos</td>
-                <td>Corinthians</td>
-              </tr>
-              <tr>
-                <td>Flamengo x Vasco</td>
-                <td>Flamengo</td>
-              </tr>
-              <tr>
-                <td>São Paulo x Palmeiras</td>
-                <td>Empate</td>
-              </tr>
-              <tr>
-                <td>Corinthians x Santos</td>
-                <td>Corinthians</td>
-              </tr>
-              <tr>
-                <td>São Paulo x Palmeiras</td>
-                <td>Empate</td>
-              </tr>
-              <tr>
-                <td>Corinthians x Santos</td>
-                <td>Corinthians</td>
-              </tr>
-            </table>
-          </body>
+              {ticket?.map((item, index) => (
+                <tr key={index}>
+                  <td>
+                    {item.time_home} X {item.time_away}
+                  </td>
+                  <td>{item.result}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </PrintArea>
         <ButtonsArea>
           <WppButton onClick={handleSendWpp}>
