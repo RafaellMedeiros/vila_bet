@@ -144,5 +144,10 @@ export default () => {
       let json = await request("get", "analysis/ranking", {}, token);
       return json;
     },
+    restartWeek: async () => {
+      let token = localStorage.getItem("token");
+      let json = await request("delete", "game-week", {}, token);
+      return json;
+    },
   };
 };

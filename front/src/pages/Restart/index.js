@@ -17,17 +17,12 @@ const Page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setDisabled(true);
-    const result = await api.login(email, password);
-    if (result.token) {
-      localStorage.setItem("token", result.token);
-      if (result.isAdmin) {
-        //tirar esse if
-        navigate("/admin");
-      } else {
-        navigate("/apostas");
-      }
+    const result = await api.restartWeek(email, password);
+    if (result.msg) {
+      navigate("/admin");
+    } else {
+      alert("Não foi possível concluir a operação!");
     }
-    console.log(result);
     setDisabled(false);
   };
   const handleBackButton = () => {
@@ -81,7 +76,7 @@ const Page = () => {
           <label className="area">
             <div className="area--title"></div>
             <div className="area--input">
-              <button disabled={disabled}>Fazer Login</button>
+              <button disabled={disabled}>Recomeçar semana</button>
             </div>
           </label>
         </form>

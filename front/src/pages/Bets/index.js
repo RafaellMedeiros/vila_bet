@@ -18,6 +18,7 @@ const Page = () => {
   const [modalStatus, setModalStatus] = useState(false);
   const [modalData, setModalData] = useState([]);
   const [games, setGames] = useState([]);
+  const [info, setInfo] = useState({});
   let sellerId;
   useEffect(() => {
     api.getUser().then((data) => {
@@ -25,7 +26,10 @@ const Page = () => {
     });
   }, []);
   useEffect(() => {
-    api.getGamesWeek().then((data) => setGames(data));
+    api.getGamesWeek().then((data) => {
+      setGames(data.gamesWeek);
+      setInfo(data.info);
+    });
   }, []);
 
   const handleOnChange = (index, value) => {
@@ -68,6 +72,7 @@ const Page = () => {
   return (
     <PageContainer>
       <PageTitle>Apostas da semana</PageTitle>
+      <div>{info.date}</div>
       <form onSubmit={handleSendButton}>
         <InfosArea>
           <label className="area">
@@ -115,68 +120,76 @@ const Page = () => {
         </InfosArea>
         <PageArea>
           <div className="container">
-            {games &&
-              games.map((i, k) => (
-                <div className="games" key={k}>
-                  <h3 key={k}>Jogo {k + 1}</h3>
+            {!info.allowed && <div>Não é possível realizar apostas.</div>}
+            {info.allowed && (
+              <>
+                {games &&
+                  games.map((i, k) => (
+                    <div className="games" key={k}>
+                      <h3 key={k}>Jogo {k + 1}</h3>
 
-                  <label htmlFor={`${k}`}>
-                    <div
-                      className="time"
-                      style={{
-                        backgroundColor: i.result === "home" ? "#781010" : "",
-                        color: i.result === "home" ? "#FFF" : "",
-                      }}
-                    >
-                      <input
-                        type="radio"
-                        value={"home"}
-                        name={k + "resultado"}
-                        id={`${k}`}
-                        onChange={() => handleOnChange(k, "home")}
-                      />
-                      {i.time_home}
+                      <label htmlFor={`${k}`}>
+                        <div
+                          className="time"
+                          style={{
+                            backgroundColor:
+                              i.result === "home" ? "#781010" : "",
+                            color: i.result === "home" ? "#FFF" : "",
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            value={"home"}
+                            name={k + "resultado"}
+                            id={`${k}`}
+                            onChange={() => handleOnChange(k, "home")}
+                          />
+                          {i.time_home}
+                        </div>
+                      </label>
+                      <label htmlFor={`${k}1`}>
+                        <div
+                          className="time"
+                          style={{
+                            backgroundColor:
+                              i.result === "draw" ? "#781010" : "",
+                            color: i.result === "draw" ? "#FFF" : "",
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            value={"draw"}
+                            name={k + "resultado"}
+                            id={`${k}1`}
+                            onChange={() => handleOnChange(k, "draw")}
+                          />
+                          Empate
+                        </div>
+                      </label>
+                      <label htmlFor={`${k}2`}>
+                        <div
+                          className="time"
+                          style={{
+                            backgroundColor:
+                              i.result === "away" ? "#781010" : "",
+                            color: i.result === "away" ? "#FFF" : "",
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            value={"away"}
+                            name={k + "resultado"}
+                            id={`${k}2`}
+                            selected={i.result === "away"}
+                            onChange={() => handleOnChange(k, "away")}
+                          />
+                          {i.time_away}
+                        </div>
+                      </label>
                     </div>
-                  </label>
-                  <label htmlFor={`${k}1`}>
-                    <div
-                      className="time"
-                      style={{
-                        backgroundColor: i.result === "draw" ? "#781010" : "",
-                        color: i.result === "draw" ? "#FFF" : "",
-                      }}
-                    >
-                      <input
-                        type="radio"
-                        value={"draw"}
-                        name={k + "resultado"}
-                        id={`${k}1`}
-                        onChange={() => handleOnChange(k, "draw")}
-                      />
-                      Empate
-                    </div>
-                  </label>
-                  <label htmlFor={`${k}2`}>
-                    <div
-                      className="time"
-                      style={{
-                        backgroundColor: i.result === "away" ? "#781010" : "",
-                        color: i.result === "away" ? "#FFF" : "",
-                      }}
-                    >
-                      <input
-                        type="radio"
-                        value={"away"}
-                        name={k + "resultado"}
-                        id={`${k}2`}
-                        selected={i.result === "away"}
-                        onChange={() => handleOnChange(k, "away")}
-                      />
-                      {i.time_away}
-                    </div>
-                  </label>
-                </div>
-              ))}
+                  ))}
+              </>
+            )}
           </div>
         </PageArea>
         <SendButtonArea>
