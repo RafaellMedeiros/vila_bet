@@ -67,7 +67,6 @@ const Page = () => {
     Object.values(game).some((value) => !value)
   );
   const isDateFilled = dateLimit !== "" ? true : false;
-  console.log(games);
 
   return (
     <PageContainer>

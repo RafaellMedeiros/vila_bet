@@ -27,7 +27,6 @@ const Page = () => {
     gamesCopy[index].result = value;
     setGames(gamesCopy);
   };
-  console.log(games);
 
   const handleBackButton = () => {
     navigate("/admin");

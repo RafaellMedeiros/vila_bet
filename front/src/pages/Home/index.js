@@ -26,7 +26,6 @@ const Page = () => {
         history("/admin");
       }
     }
-    console.log(result);
     setDisabled(false);
   };
   return (

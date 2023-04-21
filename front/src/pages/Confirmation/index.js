@@ -30,8 +30,6 @@ const Page = () => {
     newBet = true;
     window.print();
   };
-  console.log(ticket);
-  console.log("id:", id);
   const handleNewBet = () => {
     if (newBet) {
       navigate("/apostas");
