@@ -19,7 +19,7 @@ const Page = () => {
   const [modalStatus, setModalStatus] = useState(false);
   const [modalData, setModalData] = useState([]);
   useEffect(() => {
-    api.getGamesWeek().then((data) => setGames(data));
+    api.getGamesWeek().then((data) => setGames(data.gamesWeek));
   }, []);
 
   const handleOnChange = (index, value) => {

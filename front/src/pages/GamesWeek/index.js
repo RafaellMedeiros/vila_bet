@@ -53,8 +53,12 @@ const Page = () => {
   };
   const handleSendButton = async (e) => {
     e.preventDefault();
-    if (!isAnyGameEmpty) {
-      await api.gamesWeek(games, dateLimit);
+    if (!isAnyGameEmpty && isDateFilled) {
+      const response = await api.gamesWeek(games, dateLimit);
+      if (response.msg) {
+        alert("Semana Criada!");
+        navigate("/admin");
+      }
     } else {
       alert("Preencha todos os jogos!");
     }
@@ -62,6 +66,7 @@ const Page = () => {
   const isAnyGameEmpty = games.some((game) =>
     Object.values(game).some((value) => !value)
   );
+  const isDateFilled = dateLimit !== "" ? true : false;
   console.log(games);
 
   return (
