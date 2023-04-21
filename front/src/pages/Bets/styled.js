@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const PageArea = styled.div`
+  h2 {
+    display: flex;
+    justify-content: center;
+  }
   .container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -143,4 +147,9 @@ export const SendButton = styled.button`
     margin-right: 55px;
     font-size: 20px;
   }
+`;
+
+export const DateLimit = styled.div`
+  text-align: center;
+  margin: 15px 0;
 `;

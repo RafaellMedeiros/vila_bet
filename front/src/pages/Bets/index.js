@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { PageContainer, PageTitle } from "../../components/MainComponents";
-import { PageArea, InfosArea, SendButton, SendButtonArea } from "./styled";
+import {
+  PageArea,
+  InfosArea,
+  SendButton,
+  SendButtonArea,
+  DateLimit,
+} from "./styled";
 import Modal from "../../components/Modal";
 import ModalInfos from "../../components/ModalInfos";
 import useApi from "../../services/api";
@@ -19,6 +25,7 @@ const Page = () => {
   const [modalData, setModalData] = useState([]);
   const [games, setGames] = useState([]);
   const [info, setInfo] = useState({});
+  const [dateLimit, setDateLimit] = useState({});
   let sellerId;
   useEffect(() => {
     api.getUser().then((data) => {
@@ -29,6 +36,7 @@ const Page = () => {
     api.getGamesWeek().then((data) => {
       setGames(data.gamesWeek);
       setInfo(data.info);
+      setDateLimit(data.info.date);
     });
   }, []);
 
@@ -72,7 +80,11 @@ const Page = () => {
   return (
     <PageContainer>
       <PageTitle>Apostas da semana</PageTitle>
-      <div>{info.date}</div>
+      <DateLimit>
+        As apostas se encerram às <strong>{dateLimit.hours}</strong> de
+        <strong> {dateLimit.date}</strong>
+      </DateLimit>
+      <div></div>
       <form onSubmit={handleSendButton}>
         <InfosArea>
           <label className="area">
@@ -119,8 +131,8 @@ const Page = () => {
           </label>
         </InfosArea>
         <PageArea>
+          {!info.allowed && <h2>Não é possível realizar apostas.</h2>}
           <div className="container">
-            {!info.allowed && <div>Não é possível realizar apostas.</div>}
             {info.allowed && (
               <>
                 {games &&
@@ -192,12 +204,14 @@ const Page = () => {
             )}
           </div>
         </PageArea>
-        <SendButtonArea>
-          <SendButton onClick={handleSendButton}>Enviar apostas</SendButton>
-          <Modal status={modalStatus} setStatus={setModalStatus}>
-            <ModalInfos data={modalData} setStatus={setModalStatus} />
-          </Modal>
-        </SendButtonArea>
+        {info.allowed && (
+          <SendButtonArea>
+            <SendButton onClick={handleSendButton}>Enviar apostas</SendButton>
+            <Modal status={modalStatus} setStatus={setModalStatus}>
+              <ModalInfos data={modalData} setStatus={setModalStatus} />
+            </Modal>
+          </SendButtonArea>
+        )}
       </form>
     </PageContainer>
   );
