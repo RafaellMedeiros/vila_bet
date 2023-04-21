@@ -20,18 +20,24 @@ const Page = () => {
   const [showLink, setShowLink] = useState(false);
   const [Nocopied, setNoCopied] = useState(true);
   const [ticket, setTicket] = useState([]);
+  let newBet = false;
   useEffect(() => {
     api.getBet(id).then((response) => setTicket(response.data));
   }, []);
 
   const handleSendWpp = () => {};
   const handlePrint = () => {
+    newBet = true;
     window.print();
   };
   console.log(ticket);
   console.log("id:", id);
   const handleNewBet = () => {
-    <Navigate to="/apostas" />;
+    if (newBet) {
+      navigate("/apostas");
+    } else {
+      alert("Imprima para poder ir para nova aposta!");
+    }
   };
 
   return (

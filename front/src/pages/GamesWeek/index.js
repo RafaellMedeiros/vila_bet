@@ -60,7 +60,7 @@ const Page = () => {
         navigate("/admin");
       }
     } else {
-      alert("Preencha todos os jogos!");
+      alert("Preencha todas as informações!");
     }
   };
   const isAnyGameEmpty = games.some((game) =>
