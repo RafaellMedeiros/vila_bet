@@ -16,74 +16,45 @@ const Page = () => {
   };
   const query = useQueryString();
 
-  const [qId, setQId] = useState(
-    query.get("qId") != null ? query.get("qId") : ""
+  const [id, setId] = useState(query.get("Id") != null ? query.get("Id") : "");
+  const [revendedor, setRevendedor] = useState(
+    query.get("Revendedor") != null ? query.get("Revendedor") : ""
   );
-  const [qRevendedor, setQRevendedor] = useState(
-    query.get("qRevendedor") != null ? query.get("qRevendedor") : ""
-  );
-  const [qApostador, setQApostador] = useState(
-    query.get("qApostador") != null ? query.get("qApostador") : ""
-  );
-  const [qTelefone, setQTelefone] = useState(
-    query.get("qTelefone") != null ? query.get("qTelefone") : ""
-  );
-  const [qEndereco, setQEndereco] = useState(
-    query.get("qEndereco") != null ? query.get("qEndereco") : ""
-  );
-  const [qData, setQData] = useState(
-    query.get("qData") != null ? query.get("qData") : ""
-  );
-  const [qHora, setQHora] = useState(
-    query.get("qHora") != null ? query.get("qHora") : ""
+  const [data, setData] = useState(
+    query.get("Data") != null ? query.get("Data") : ""
   );
 
   const navigate = useNavigate();
-  const [id, setId] = useState("");
-  const [revendedor, setRevendedor] = useState("");
-  const [apostador, setApostador] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [endereco, setEndereco] = useState("");
-  const [data, setData] = useState("");
-  const [hora, setHora] = useState("");
 
   const [disabled, setDisabled] = useState(false);
 
-  const [filter, setFilter] = useState(false);
+  const [filter, setFilter] = useState(true);
 
   const [aposta, setAposta] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
+  useEffect(() => {
+    api.getAllUsers().then((response) => setAllUsers(response));
+  }, []);
   useEffect(() => {
     api.getAnalysis().then((data) => setAposta(data));
   }, []);
 
   useEffect(() => {
     let queryString = [];
-    if (qId) {
-      queryString.push(`qId=${qId}`);
+    if (id) {
+      queryString.push(`qId=${id}`);
     }
-    if (qRevendedor) {
-      queryString.push(`qRevendedor=${qRevendedor}`);
+    if (revendedor) {
+      queryString.push(`qRevendedor=${revendedor}`);
     }
-    if (qApostador) {
-      queryString.push(`qApostador=${qApostador}`);
-    }
-    if (qTelefone) {
-      queryString.push(`qTelefone=${qTelefone}`);
-    }
-    if (qEndereco) {
-      queryString.push(`qEndereco=${qEndereco}`);
-    }
-    if (qData) {
-      queryString.push(`qData=${qData}`);
-    }
-    if (qHora) {
-      queryString.push(`qHora=${qHora}`);
+    if (data) {
+      queryString.push(`qData=${data}`);
     }
 
     history({
       search: `?${queryString.join("&")}`,
     });
-  }, [qId, qRevendedor, qApostador, qTelefone, qEndereco, qData, qHora]);
+  }, [id, revendedor, data]);
 
   const handleFilter = () => {
     setFilter(!filter);
@@ -92,10 +63,10 @@ const Page = () => {
   const handleBackButton = () => {
     history("/admin");
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setDisabled(true);
-
+    setAposta(await api.getAnalysis(id, revendedor, data));
     setDisabled(false);
   };
   return (
@@ -116,20 +87,22 @@ const Page = () => {
                     <input
                       type="text"
                       disabled={disabled}
-                      value={qId}
-                      onChange={(e) => setQId(e.target.value)}
+                      value={id}
+                      onChange={(e) => setId(e.target.value)}
                     />
                   </div>
                 </label>
                 <label className="area">
                   <div className="area--title">Filtrar por revendedor:</div>
                   <div className="area--input">
-                    <input
-                      type="text"
-                      disabled={disabled}
-                      value={qRevendedor}
-                      onChange={(e) => setQRevendedor(e.target.value)}
-                    />
+                    <select onChange={(e) => setRevendedor(e.target.value)}>
+                      <option></option>
+                      {allUsers.map((item, index) => (
+                        <option key={index} value={item}>
+                          {item}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </label>
 
@@ -139,8 +112,8 @@ const Page = () => {
                     <input
                       type="date"
                       disabled={disabled}
-                      value={qData}
-                      onChange={(e) => setQData(e.target.value)}
+                      value={data}
+                      onChange={(e) => setData(e.target.value)}
                     />
                   </div>
                 </label>
@@ -165,7 +138,7 @@ const Page = () => {
             <th>Endereço</th>
             <th>data</th>
           </tr>
-          {aposta.map((i, k) => (
+          {aposta?.map((i, k) => (
             <tr key={k}>
               <td>{i.id}</td>
               <td>{i.seller}</td>

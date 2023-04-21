@@ -129,9 +129,14 @@ export default () => {
 
       return json;
     },
-    getAnalysis: async () => {
+    getAnalysis: async (id, seller, date) => {
       let token = localStorage.getItem("token");
-      let json = await request("get", "analysis/", {}, token);
+      let json = await request("get", "analysis/", { id, seller, date }, token);
+      return json;
+    },
+    getAllUsers: async () => {
+      let token = localStorage.getItem("token");
+      let json = await request("get", "analysis/allusers", {}, token);
       return json;
     },
   };
