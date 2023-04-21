@@ -42,13 +42,13 @@ const Page = () => {
   useEffect(() => {
     let queryString = [];
     if (id) {
-      queryString.push(`qId=${id}`);
+      queryString.push(`Id=${id}`);
     }
     if (revendedor) {
-      queryString.push(`qRevendedor=${revendedor}`);
+      queryString.push(`Revendedor=${revendedor}`);
     }
     if (data) {
-      queryString.push(`qData=${data}`);
+      queryString.push(`Data=${data}`);
     }
 
     history({

@@ -14,7 +14,7 @@ const request = async (method, endpoint, params, token = null) => {
       break;
     case "post":
     case "put":
-    case "delet":
+    case "delete":
       body = JSON.stringify(params);
       break;
     case "getBody":
@@ -137,6 +137,11 @@ export default () => {
     getAllUsers: async () => {
       let token = localStorage.getItem("token");
       let json = await request("get", "analysis/allusers", {}, token);
+      return json;
+    },
+    getRanking: async () => {
+      let token = localStorage.getItem("token");
+      let json = await request("get", "analysis/ranking", {}, token);
       return json;
     },
   };
