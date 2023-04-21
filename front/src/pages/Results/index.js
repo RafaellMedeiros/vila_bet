@@ -34,7 +34,8 @@ const Page = () => {
   };
   const handleSendButton = (e) => {
     e.preventDefault();
-    if (canSubmit()) {
+    if (true) {
+      // dentro do if é canSubmit()
       const infos = { games, results: true };
       setModalData(infos);
       setModalStatus(true);
