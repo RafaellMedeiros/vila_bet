@@ -36,7 +36,7 @@ const Page = () => {
     api.getGamesWeek().then((data) => {
       setGames(data.gamesWeek);
       setInfo(data.info);
-      setDateLimit(data.info.date);
+      setDateLimit(data?.info?.date);
     });
   }, []);
 
@@ -76,15 +76,17 @@ const Page = () => {
     }
   };
 
-  const isAllGamesFilled = games.every((game) => game.result);
+  const isAllGamesFilled = games?.every((game) => game.result);
   return (
     <PageContainer>
       <PageTitle>Apostas da semana</PageTitle>
-      <DateLimit>
-        As apostas se encerram às <strong>{dateLimit.hours}</strong> de
-        <strong> {dateLimit.date}</strong>
-      </DateLimit>
-      <div></div>
+      {dateLimit !== undefined && (
+        <DateLimit>
+          As apostas se encerram às <strong>{dateLimit?.hours}</strong> de
+          <strong> {dateLimit?.date}</strong>
+        </DateLimit>
+      )}
+
       <form onSubmit={handleSendButton}>
         <InfosArea>
           <label className="area">
@@ -136,7 +138,7 @@ const Page = () => {
             {info.allowed && (
               <>
                 {games &&
-                  games.map((i, k) => (
+                  games?.map((i, k) => (
                     <div className="games" key={k}>
                       <h3 key={k}>Jogo {k + 1}</h3>
 

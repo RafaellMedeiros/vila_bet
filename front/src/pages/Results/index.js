@@ -49,14 +49,14 @@ const Page = () => {
       return false;
     }
   };
-  const isAllGamesFilled = games.every((game) => game.result);
+  const isAllGamesFilled = games?.every((game) => game.result);
   return (
     <PageContainer>
       <Back onClick={handleBackButton}>Voltar para a página inicial</Back>
       <PageTitle>Resultados da semana</PageTitle>
       <PageArea>
         <div className="container">
-          {games.map((i, k) => (
+          {games?.map((i, k) => (
             <div className="games" key={k}>
               <h3 key={k}>Jogo {k + 1}</h3>
 
@@ -119,12 +119,14 @@ const Page = () => {
           ))}
         </div>
       </PageArea>
-      <SendButtonArea>
-        <SendButton onClick={handleSendButton}>Enviar resultados</SendButton>
-        <Modal status={modalStatus} setStatus={setModalStatus}>
-          <ModalInfos data={modalData} setStatus={setModalStatus} />
-        </Modal>
-      </SendButtonArea>
+      {games && (
+        <SendButtonArea>
+          <SendButton onClick={handleSendButton}>Enviar resultados</SendButton>
+          <Modal status={modalStatus} setStatus={setModalStatus}>
+            <ModalInfos data={modalData} setStatus={setModalStatus} />
+          </Modal>
+        </SendButtonArea>
+      )}
     </PageContainer>
   );
 };

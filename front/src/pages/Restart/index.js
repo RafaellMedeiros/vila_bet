@@ -19,6 +19,7 @@ const Page = () => {
     setDisabled(true);
     const result = await api.restartWeek(email, password);
     if (result.msg) {
+      alert("Semana zerada!");
       navigate("/admin");
     } else {
       alert("Não foi possível concluir a operação!");
